@@ -64,18 +64,24 @@ form?.addEventListener("submit", async (event) => {
   if (!db) {
     statusEl.textContent =
       "Firebase ist noch nicht verbunden. Bitte firebase-config.js prüfen.";
+
     statusEl.classList.add("error");
     return;
   }
 
   const inquiry = {
     name: String(fd.get("name") || "").trim(),
+
     email: String(fd.get("email") || "")
       .trim()
       .toLowerCase(),
+
     company: String(fd.get("company") || "").trim(),
+
     budget: String(fd.get("budget") || ""),
+
     service: String(fd.get("service") || ""),
+
     message: String(fd.get("message") || "").trim()
   };
 
@@ -93,17 +99,15 @@ form?.addEventListener("submit", async (event) => {
     });
 
     // 2. Netlify Function aufrufen
-    // Diese verschickt:
-    // - Mail an Mikael
-    // - Mail an Paula
-    // - Bestätigung an den Kunden
     const mailResponse = await fetch(
       "/.netlify/functions/send-inquiry",
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json"
         },
+
         body: JSON.stringify(inquiry)
       }
     );
@@ -113,19 +117,25 @@ form?.addEventListener("submit", async (event) => {
     try {
       mailResult = await mailResponse.json();
     } catch {
-      // Falls die Function keine JSON-Antwort liefert
+      mailResult = {
+        error: "Die Netlify Function hat keine gültige JSON-Antwort geliefert."
+      };
     }
 
+    // DEBUG:
+    // Zeigt uns jetzt den genauen Fehler auf der Webseite.
     if (!mailResponse.ok) {
       console.error("Mail Function Fehler:", mailResult);
 
-      throw new Error(
+      const details =
+        mailResult.details ||
         mailResult.error ||
-        "E-Mail konnte nicht gesendet werden."
-      );
+        `HTTP Fehler ${mailResponse.status}`;
+
+      throw new Error(details);
     }
 
-    // 3. Formular zurücksetzen
+    // 3. Erfolgreich
     form.reset();
 
     statusEl.textContent =
@@ -137,7 +147,7 @@ form?.addEventListener("submit", async (event) => {
     console.error("Intertwist Anfrage Fehler:", error);
 
     statusEl.textContent =
-      "Die Anfrage konnte nicht vollständig verarbeitet werden. Bitte versuche es erneut.";
+      `Fehler: ${error?.message || String(error)}`;
 
     statusEl.classList.add("error");
 
