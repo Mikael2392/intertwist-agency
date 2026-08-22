@@ -1,11 +1,12 @@
-/* ================================================
+/* =========================================================
    INTERTWIST MOTION
-================================================ */
+   Hero + Marquee + 3D Project Carousel
+========================================================= */
 
 
-/* ================================================
+/* =========================================================
    HERO EINBLENDEN
-================================================ */
+========================================================= */
 
 .hero__grid > div:first-child {
   position: relative;
@@ -58,7 +59,9 @@
 }
 
 
-/* bewegte CODE-Farbe */
+/* =========================================================
+   CODE FARBE
+========================================================= */
 
 .hero h1 span {
   display: inline-block;
@@ -73,17 +76,12 @@
       #eaff00
     );
 
-  background-size:
-    300% 100%;
+  background-size: 300% 100%;
 
-  -webkit-background-clip:
-    text;
+  -webkit-background-clip: text;
+  background-clip: text;
 
-  background-clip:
-    text;
-
-  color:
-    transparent;
+  color: transparent;
 
   animation:
     codeColors
@@ -93,17 +91,15 @@
 }
 
 
-/* ================================================
+/* =========================================================
    MIKAEL / PAULA
-================================================ */
+========================================================= */
 
 .hero__card {
   position: relative;
-
   z-index: 2;
 
-  transform-style:
-    preserve-3d;
+  transform-style: preserve-3d;
 
   animation:
     heroCardEnter
@@ -118,17 +114,9 @@
     infinite;
 
   transition:
-    transform
-    0.15s
-    ease-out,
-
-    border-color
-    0.3s
-    ease,
-
-    box-shadow
-    0.3s
-    ease;
+    transform 0.15s ease-out,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
@@ -138,18 +126,18 @@
       255,
       255,
       255,
-      0.23
+      0.25
     );
 
   box-shadow:
     0
-    40px
-    100px
+    45px
+    110px
     rgba(
       0,
       0,
       0,
-      0.42
+      0.45
     );
 }
 
@@ -164,41 +152,34 @@
     infinite;
 
   transition:
-    transform
-    0.3s
-    ease,
-
-    border-color
-    0.3s
-    ease,
-
-    box-shadow
-    0.3s
-    ease;
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
 .hero__person:hover {
   transform:
-    scale(1.02);
+    translateZ(25px)
+    scale(1.025);
 
   border-color:
     rgba(
       234,
       255,
       0,
-      0.6
+      0.65
     );
 
   box-shadow:
     0
-    15px
-    40px
+    18px
+    45px
     rgba(
       234,
       255,
       0,
-      0.06
+      0.08
     );
 }
 
@@ -220,61 +201,52 @@
       255,
       105,
       199,
-      0.65
+      0.7
     );
 
   box-shadow:
     0
-    15px
-    40px
+    18px
+    45px
     rgba(
       255,
       105,
       199,
-      0.08
+      0.1
     );
 }
 
 
-/* gelbe Strategie-Linie */
+/* gelbe Strategie-Zeile */
 
 .hero__flow {
-  position:
-    relative;
-
-  overflow:
-    hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 
 .hero__flow::after {
   content: "";
 
-  position:
-    absolute;
+  position: absolute;
 
   top: 0;
   bottom: 0;
 
-  left:
-    -130px;
+  left: -130px;
 
-  width:
-    100px;
+  width: 100px;
 
   background:
     linear-gradient(
       90deg,
-
       transparent,
-
       rgba(
         255,
         255,
         255,
         0.8
       ),
-
       transparent
     );
 
@@ -288,7 +260,7 @@
 }
 
 
-/* bewegte Hintergrund-Glows */
+/* Hintergrund */
 
 .hero__glow--pink {
   animation:
@@ -310,30 +282,24 @@
 }
 
 
-/* ================================================
+/* =========================================================
    GROSSES GELBES LAUFBAND
-================================================ */
+========================================================= */
 
 .marquee {
-  width:
-    100%;
+  width: 100%;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  background:
-    #eaff00;
+  background: #eaff00;
 
-  color:
-    #070707;
+  color: #070707;
 
   border-top:
-    2px solid
-    #070707;
+    2px solid #070707;
 
   border-bottom:
-    2px solid
-    #070707;
+    2px solid #070707;
 
   transform:
     rotate(-0.2deg);
@@ -351,26 +317,17 @@
 }
 
 
-/*
-  überschreibt die alte
-  .marquee div-Regel aus styles.css
-*/
+/* überschreibt alte marquee-Regel */
 
 .marquee .marquee__track {
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  width:
-    max-content;
+  width: max-content;
 
-  padding:
-    0;
-
-  margin:
-    0;
+  padding: 0;
+  margin: 0;
 
   animation:
     intertwistMarquee
@@ -378,20 +335,16 @@
     linear
     infinite;
 
-  will-change:
-    transform;
+  will-change: transform;
 }
 
 
 .marquee .marquee__group {
-  flex-shrink:
-    0;
+  flex-shrink: 0;
 
-  width:
-    auto;
+  width: auto;
 
-  margin:
-    0;
+  margin: 0;
 
   padding:
     27px
@@ -409,30 +362,23 @@
       30px
     );
 
-  line-height:
-    1;
+  line-height: 1;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  letter-spacing:
-    1.5px;
+  letter-spacing: 1.5px;
 
-  white-space:
-    nowrap;
+  white-space: nowrap;
 
-  animation:
-    none;
+  animation: none;
 
-  transform:
-    none;
+  transform: none;
 }
 
 
 .marquee:hover
 .marquee__track {
-  animation-play-state:
-    paused;
+  animation-play-state: paused;
 }
 
 
@@ -451,119 +397,161 @@
 }
 
 
-/* ================================================
+/* =========================================================
    PROOF OVER PROMISES
-================================================ */
+========================================================= */
 
 #work {
-  position:
-    relative;
+  position: relative;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  padding-bottom:
-    135px;
+  padding-top: 120px;
+  padding-bottom: 160px;
 
   background:
     radial-gradient(
-      circle at 50% 45%,
-
+      circle at 50% 55%,
       rgba(
         234,
         255,
         0,
-        0.035
+        0.055
       ),
-
-      transparent
-      42%
+      transparent 35%
     );
 }
 
+
+/* großer Titel */
 
 #work .section-head h2 {
   font-size:
     clamp(
       52px,
       7vw,
-      96px
+      100px
     );
 
-  line-height:
-    0.9;
+  line-height: 0.88;
 }
 
 
-/* Projektband */
+/* =========================================================
+   3D BÜHNE
+========================================================= */
+
+#work .wrap {
+  perspective: 1400px;
+}
+
 
 #work .work-grid {
-  display:
-    flex;
+  display: flex;
 
-  grid-template-columns:
-    none;
+  grid-template-columns: none;
 
-  width:
-    max-content;
+  width: max-content;
+  max-width: none;
 
-  max-width:
-    none;
+  gap: 34px;
 
-  gap:
-    20px;
+  padding:
+    45px
+    0
+    70px;
 
-  overflow:
-    visible;
+  overflow: visible;
+
+  transform-style: preserve-3d;
 
   animation:
     intertwistProjectRail
-    55s
+    58s
     linear
     infinite;
 
-  will-change:
-    transform;
+  will-change: transform;
 }
 
+
+/* stoppt, wenn JS Klasse setzt */
+
+#work .work-grid.is-paused {
+  animation-play-state: paused;
+}
+
+
+/* Sicherheit zusätzlich */
 
 #work .work-grid:hover {
-  animation-play-state:
-    paused;
+  animation-play-state: paused;
 }
 
 
-/* Projektkarte */
+/* =========================================================
+   3D PROJEKTKARTEN
+========================================================= */
 
 #work .work {
-  position:
-    relative;
+  --card-rotate-y: 0deg;
+  --card-z: 0px;
+  --card-scale: 1;
+  --card-opacity: 1;
+  --card-brightness: 0.75;
+
+  position: relative;
 
   flex:
     0 0
     clamp(
-      320px,
-      38vw,
-      510px
+      330px,
+      39vw,
+      520px
     );
 
-  min-height:
-    355px;
+  min-height: 365px;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  isolation:
-    isolate;
+  isolation: isolate;
 
-  padding:
-    26px;
+  padding: 28px;
 
-  border-radius:
-    26px;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.14
+    );
 
-  background:
-    #101113;
+  border-radius: 28px;
+
+  background: #101113;
+
+  opacity:
+    var(
+      --card-opacity
+    );
+
+  transform:
+    translateZ(
+      var(--card-z)
+    )
+    rotateY(
+      var(--card-rotate-y)
+    )
+    scale(
+      var(--card-scale)
+    );
+
+  transform-origin: center center;
+
+  transform-style: preserve-3d;
+
+  backface-visibility: hidden;
 
   box-shadow:
     0
@@ -573,42 +561,44 @@
       0,
       0,
       0,
-      0.4
+      0.48
     );
 
   transition:
     transform
-    0.45s
-    cubic-bezier(
-      .2,
-      .8,
-      .2,
-      1
-    ),
+    0.22s
+    linear,
+
+    opacity
+    0.25s
+    ease,
 
     border-color
-    0.4s
+    0.35s
     ease,
 
     box-shadow
-    0.4s
+    0.35s
     ease;
+
+  will-change:
+    transform,
+    opacity;
 }
 
 
-/* echtes Projektbild */
+/* =========================================================
+   PROJEKT-SCREENSHOT
+========================================================= */
 
 #work .work::before {
   content: "";
 
-  position:
-    absolute;
+  position: absolute;
 
-  inset:
-    0;
+  inset: 0;
 
-  z-index:
-    -2;
+  z-index: -2;
 
   background-image:
     var(
@@ -616,26 +606,28 @@
       linear-gradient(
         145deg,
         #151719,
-        #0a0b0c
+        #090a0b
       )
     );
 
-  background-size:
-    cover;
+  background-size: cover;
 
-  background-position:
-    top center;
+  background-position: top center;
 
   filter:
-    saturate(0.92)
-    brightness(0.72);
+    saturate(0.9)
+    brightness(
+      var(
+        --card-brightness
+      )
+    );
 
   transform:
-    scale(1.01);
+    scale(1.02);
 
   transition:
     transform
-    0.8s
+    0.7s
     cubic-bezier(
       .2,
       .8,
@@ -644,24 +636,21 @@
     ),
 
     filter
-    0.5s
+    0.4s
     ease;
 }
 
 
-/* Schatten über Bild */
+/* dunkler Verlauf */
 
 #work .work::after {
   content: "";
 
-  position:
-    absolute;
+  position: absolute;
 
-  inset:
-    0;
+  inset: 0;
 
-  z-index:
-    -1;
+  z-index: -1;
 
   background:
     linear-gradient(
@@ -679,7 +668,7 @@
         5,
         5,
         5,
-        0.78
+        0.8
       )
       43%,
 
@@ -687,108 +676,193 @@
         5,
         5,
         5,
-        0.10
+        0.08
       )
       82%
     );
 }
 
 
-/* jede zweite Karte etwas tiefer */
-
-#work .work:nth-child(even) {
-  transform:
-    translateY(25px);
-}
-
-
-/* Hover */
-
-#work .work:hover {
-  z-index:
-    20;
-
-  transform:
-    translateY(-8px)
-    scale(1.035);
-
-  border-color:
-    rgba(
-      234,
-      255,
-      0,
-      0.7
-    );
-
-  box-shadow:
-    0
-    40px
-    110px
-    rgba(
-      234,
-      255,
-      0,
-      0.10
-    );
-}
-
-
-#work .work:nth-child(even):hover {
-  transform:
-    translateY(15px)
-    scale(1.035);
-}
-
-
-#work .work:hover::before {
-  transform:
-    scale(1.08);
-
-  filter:
-    saturate(1)
-    brightness(0.84);
-}
-
+/* =========================================================
+   PROJEKT TEXT
+========================================================= */
 
 #work .work span,
 #work .work h3,
 #work .work p,
 #work .work b {
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    2;
+  z-index: 2;
+}
+
+
+#work .work span {
+  text-shadow:
+    0
+    2px
+    10px
+    rgba(
+      0,
+      0,
+      0,
+      0.8
+    );
 }
 
 
 #work .work h3 {
   font-size:
     clamp(
-      27px,
+      28px,
       3vw,
-      38px
+      40px
+    );
+
+  text-shadow:
+    0
+    5px
+    20px
+    rgba(
+      0,
+      0,
+      0,
+      0.9
     );
 }
 
 
-/* ================================================
-   KEYFRAMES HERO
-================================================ */
+#work .work p {
+  max-width: 90%;
+}
+
+
+/* =========================================================
+   KARTE IN DER MITTE
+========================================================= */
+
+#work .work.is-center {
+  border-color:
+    rgba(
+      234,
+      255,
+      0,
+      0.48
+    );
+
+  box-shadow:
+    0
+    35px
+    100px
+    rgba(
+      234,
+      255,
+      0,
+      0.09
+    );
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+#work .work.is-hovered {
+  z-index: 100;
+
+  opacity: 1;
+
+  transform:
+    translateZ(120px)
+    rotateY(0deg)
+    scale(1.08);
+
+  border-color:
+    #eaff00;
+
+  box-shadow:
+    0
+    45px
+    130px
+    rgba(
+      234,
+      255,
+      0,
+      0.18
+    );
+}
+
+
+#work .work.is-hovered::before {
+  transform:
+    scale(1.09);
+
+  filter:
+    saturate(1.05)
+    brightness(0.88);
+}
+
+
+/* =========================================================
+   SEITLICHER 3D SCHATTEN
+========================================================= */
+
+#work::before,
+#work::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 13vw;
+
+  z-index: 15;
+
+  pointer-events: none;
+}
+
+
+#work::before {
+  left: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      #070707,
+      transparent
+    );
+}
+
+
+#work::after {
+  right: 0;
+
+  background:
+    linear-gradient(
+      to left,
+      #070707,
+      transparent
+    );
+}
+
+
+/* =========================================================
+   HERO KEYFRAMES
+========================================================= */
 
 @keyframes heroFadeUp {
 
   from {
-    opacity:
-      0;
+    opacity: 0;
 
     transform:
       translateY(28px);
   }
 
   to {
-    opacity:
-      1;
+    opacity: 1;
 
     transform:
       translateY(0);
@@ -800,8 +874,7 @@
 @keyframes heroTitleIn {
 
   from {
-    opacity:
-      0;
+    opacity: 0;
 
     transform:
       translateY(45px);
@@ -811,8 +884,7 @@
   }
 
   to {
-    opacity:
-      1;
+    opacity: 1;
 
     transform:
       translateY(0);
@@ -842,16 +914,14 @@
 @keyframes heroCardEnter {
 
   from {
-    opacity:
-      0;
+    opacity: 0;
 
     translate:
       70px 0;
   }
 
   to {
-    opacity:
-      1;
+    opacity: 1;
 
     translate:
       0 0;
@@ -972,9 +1042,9 @@
 }
 
 
-/* ================================================
-   PROJEKTBAND
-================================================ */
+/* =========================================================
+   PROJEKTE ENDLOS BEWEGEN
+========================================================= */
 
 @keyframes intertwistProjectRail {
 
@@ -999,9 +1069,9 @@
 }
 
 
-/* ================================================
+/* =========================================================
    MOBILE
-================================================ */
+========================================================= */
 
 @media (
   max-width:
@@ -1019,28 +1089,48 @@
   }
 
 
-  #work
-  .work {
-    flex-basis:
-      84vw;
-
-    min-height:
-      320px;
+  #work {
+    padding-bottom:
+      110px;
   }
 
 
-  #work
-  .work-grid {
+  #work .work-grid {
+    gap:
+      20px;
+
     animation-duration:
-      45s;
+      48s;
+
+    padding-top:
+      30px;
+  }
+
+
+  #work .work {
+    flex-basis:
+      82vw;
+
+    min-height:
+      320px;
+
+    border-radius:
+      22px;
+  }
+
+
+  #work::before,
+  #work::after {
+    width:
+      5vw;
   }
 
 }
 
 
-/* ================================================
+/* =========================================================
    REDUCED MOTION
-================================================ */
+========================================================= */
 
 @media (
   prefers-reduced-motion:
@@ -1057,6 +1147,15 @@
   #work .work-grid {
     animation:
       none !important;
+  }
+
+
+  #work .work {
+    transform:
+      none !important;
+
+    opacity:
+      1 !important;
   }
 
 }
