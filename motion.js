@@ -3,7 +3,7 @@ document.addEventListener(
   () => {
 
     /* =====================================================
-       PROJEKT SCREENSHOTS
+       PROJEKT-BILDER
     ===================================================== */
 
     function applyProjectImages() {
@@ -24,7 +24,8 @@ document.addEventListener(
               ?.trim();
 
 
-          let imageUrl = "";
+          let imageUrl =
+            "";
 
 
           if (
@@ -101,14 +102,8 @@ document.addEventListener(
 
 
     /* =====================================================
-       ENDLOSES PROJEKTBAND
+       PROJEKT KARUSSELL
     ===================================================== */
-
-    const workSection =
-      document.querySelector(
-        "#work"
-      );
-
 
     const workGrid =
       document.querySelector(
@@ -116,20 +111,18 @@ document.addEventListener(
       );
 
 
-    if (
-      workGrid &&
-      workSection
-    ) {
+    if (workGrid) {
 
-      let originalCards =
+      const originalCards =
         Array.from(
           workGrid.children
         );
 
 
-      /* -----------------------------------------------------
-         KARTEN EINMAL KOPIEREN
-      ----------------------------------------------------- */
+      /* =================================================
+         KARTEN KOPIEREN
+         Damit links/rechts endlos funktioniert
+      ================================================= */
 
       if (
         !workGrid.dataset.loopReady
@@ -158,20 +151,6 @@ document.addEventListener(
             }
 
 
-            clone
-              .querySelectorAll(
-                "a, button, input, select, textarea"
-              )
-              .forEach(
-                element => {
-
-                  element.tabIndex =
-                    -1;
-
-                }
-              );
-
-
             workGrid.appendChild(
               clone
             );
@@ -189,11 +168,55 @@ document.addEventListener(
       applyProjectImages();
 
 
-      /* -----------------------------------------------------
-         EXAKTE BREITE EINER RUNDE
-      ----------------------------------------------------- */
+      /* =================================================
+         VARIABLEN
+      ================================================= */
 
-      function updateLoopDistance() {
+      let position =
+        0;
+
+
+      let loopWidth =
+        0;
+
+
+      let isDragging =
+        false;
+
+
+      let isHovering =
+        false;
+
+
+      let pointerStartX =
+        0;
+
+
+      let positionStart =
+        0;
+
+
+      let lastPointerX =
+        0;
+
+
+      let velocity =
+        0;
+
+
+      let resumeTime =
+        0;
+
+
+      const automaticSpeed =
+        0.42;
+
+
+      /* =================================================
+         BREITE EINER KOMPLETTEN RUNDE
+      ================================================= */
+
+      function calculateLoopWidth() {
 
         const styles =
           getComputedStyle(
@@ -203,346 +226,416 @@ document.addEventListener(
 
         const gap =
           parseFloat(
-            styles.columnGap ||
             styles.gap ||
+            styles.columnGap ||
             "0"
           );
 
 
-        let distance =
+        loopWidth =
           0;
 
 
         originalCards.forEach(
           card => {
 
-            distance +=
+            loopWidth +=
               card
                 .getBoundingClientRect()
                 .width;
 
-            distance +=
+            loopWidth +=
               gap;
 
           }
         );
 
-
-        workGrid.style.setProperty(
-          "--project-loop-distance",
-          `${distance}px`
-        );
-
       }
 
 
       requestAnimationFrame(
-        updateLoopDistance
+        calculateLoopWidth
       );
 
 
       setTimeout(
-        updateLoopDistance,
-        500
+        calculateLoopWidth,
+        400
       );
 
 
-      /* =====================================================
-         3D RAD EFFEKT
-      ===================================================== */
+      /* =================================================
+         ENDLOS POSITION KORRIGIEREN
+      ================================================= */
 
-      function update3DCarousel() {
+      function normalizePosition() {
 
-        const sectionRect =
-          workSection.getBoundingClientRect();
+        if (
+          loopWidth <= 0
+        ) {
 
-
-        /*
-          Mittelpunkt des sichtbaren Browsers.
-        */
-
-        const screenCenter =
-          window.innerWidth / 2;
-
-
-        const cards =
-          workGrid.querySelectorAll(
-            ".work"
-          );
-
-
-        let closestCard =
-          null;
-
-
-        let closestDistance =
-          Infinity;
-
-
-        cards.forEach(
-          card => {
-
-            /*
-              Wenn mit Maus drauf:
-              JS verändert diese Karte nicht.
-            */
-
-            if (
-              card.classList.contains(
-                "is-hovered"
-              )
-            ) {
-
-              return;
-
-            }
-
-
-            const rect =
-              card.getBoundingClientRect();
-
-
-            const cardCenter =
-              rect.left +
-              rect.width / 2;
-
-
-            const difference =
-              cardCenter -
-              screenCenter;
-
-
-            /*
-              -1 = weit links
-               0 = Mitte
-               1 = weit rechts
-            */
-
-            const normalized =
-              Math.max(
-                -1,
-                Math.min(
-                  1,
-                  difference /
-                  (
-                    window.innerWidth *
-                    0.55
-                  )
-                )
-              );
-
-
-            /*
-              Je weiter seitlich,
-              desto stärker drehen.
-            */
-
-            const rotateY =
-              normalized *
-              -52;
-
-
-            /*
-              Mitte kommt nach vorne,
-              Seiten nach hinten.
-            */
-
-            const centerPower =
-              1 -
-              Math.min(
-                1,
-                Math.abs(
-                  normalized
-                )
-              );
-
-
-            const translateZ =
-              -120 +
-              centerPower *
-              190;
-
-
-            /*
-              Mitte größer.
-            */
-
-            const scale =
-              0.82 +
-              centerPower *
-              0.22;
-
-
-            /*
-              Seiten etwas dunkler.
-            */
-
-            const opacity =
-              0.5 +
-              centerPower *
-              0.5;
-
-
-            const brightness =
-              0.48 +
-              centerPower *
-              0.4;
-
-
-            card.style.setProperty(
-              "--card-rotate-y",
-              `${rotateY}deg`
-            );
-
-
-            card.style.setProperty(
-              "--card-z",
-              `${translateZ}px`
-            );
-
-
-            card.style.setProperty(
-              "--card-scale",
-              scale.toFixed(3)
-            );
-
-
-            card.style.setProperty(
-              "--card-opacity",
-              opacity.toFixed(3)
-            );
-
-
-            card.style.setProperty(
-              "--card-brightness",
-              brightness.toFixed(3)
-            );
-
-
-            /*
-              Welche Karte ist am nächsten
-              an der Mitte?
-            */
-
-            const absoluteDistance =
-              Math.abs(
-                difference
-              );
-
-
-            if (
-              absoluteDistance <
-              closestDistance
-            ) {
-
-              closestDistance =
-                absoluteDistance;
-
-              closestCard =
-                card;
-
-            }
-
-          }
-        );
-
-
-        /*
-          Nur mittlere Karte markieren.
-        */
-
-        cards.forEach(
-          card => {
-
-            card.classList.remove(
-              "is-center"
-            );
-
-          }
-        );
-
-
-        if (closestCard) {
-
-          closestCard.classList.add(
-            "is-center"
-          );
+          return;
 
         }
 
 
+        while (
+          position <=
+          -loopWidth
+        ) {
+
+          position +=
+            loopWidth;
+
+        }
+
+
+        while (
+          position > 0
+        ) {
+
+          position -=
+            loopWidth;
+
+        }
+
+      }
+
+
+      /* =================================================
+         HAUPT-ANIMATION
+      ================================================= */
+
+      function animate() {
+
+        const now =
+          performance.now();
+
+
+        /*
+          Automatisch laufen:
+
+          - nicht beim Ziehen
+          - nicht beim Hover
+          - erst nach kurzer Pause
+        */
+
+        if (
+          !isDragging &&
+          !isHovering &&
+          now > resumeTime
+        ) {
+
+          position -=
+            automaticSpeed;
+
+        }
+
+
+        /*
+          kleines Nachrollen
+          nach dem Ziehen
+        */
+
+        if (
+          !isDragging &&
+          Math.abs(velocity) >
+          0.05
+        ) {
+
+          position +=
+            velocity;
+
+
+          velocity *=
+            0.93;
+
+        }
+
+
+        normalizePosition();
+
+
+        workGrid.style.transform =
+          `translate3d(${position}px, 0, 0)`;
+
+
         requestAnimationFrame(
-          update3DCarousel
+          animate
         );
 
       }
 
 
       requestAnimationFrame(
-        update3DCarousel
+        animate
       );
 
 
-      /* =====================================================
-         HOVER = KARUSSELL STOPPEN
-      ===================================================== */
+      /* =================================================
+         MAUS DRAUF = STOPP
+      ================================================= */
 
-      function setupCardHover() {
+      workGrid.addEventListener(
+        "mouseenter",
+        () => {
 
-        const cards =
-          workGrid.querySelectorAll(
-            ".work"
+          isHovering =
+            true;
+
+        }
+      );
+
+
+      workGrid.addEventListener(
+        "mouseleave",
+        () => {
+
+          if (
+            !isDragging
+          ) {
+
+            isHovering =
+              false;
+
+
+            resumeTime =
+              performance.now() +
+              700;
+
+          }
+
+        }
+      );
+
+
+      /* =================================================
+         MAUS / TOUCH DRAG START
+      ================================================= */
+
+      workGrid.addEventListener(
+        "pointerdown",
+        event => {
+
+          isDragging =
+            true;
+
+
+          isHovering =
+            true;
+
+
+          velocity =
+            0;
+
+
+          pointerStartX =
+            event.clientX;
+
+
+          lastPointerX =
+            event.clientX;
+
+
+          positionStart =
+            position;
+
+
+          workGrid.classList.add(
+            "is-dragging"
           );
 
 
-        cards.forEach(
-          card => {
+          workGrid.setPointerCapture(
+            event.pointerId
+          );
 
-            card.addEventListener(
-              "mouseenter",
-              () => {
-
-                workGrid.classList.add(
-                  "is-paused"
-                );
+        }
+      );
 
 
-                card.classList.add(
-                  "is-hovered"
-                );
+      /* =================================================
+         ZIEHEN NACH LINKS / RECHTS
+      ================================================= */
 
-              }
-            );
+      workGrid.addEventListener(
+        "pointermove",
+        event => {
+
+          if (
+            !isDragging
+          ) {
+
+            return;
+
+          }
 
 
-            card.addEventListener(
-              "mouseleave",
-              () => {
-
-                card.classList.remove(
-                  "is-hovered"
-                );
+          const difference =
+            event.clientX -
+            pointerStartX;
 
 
-                workGrid.classList.remove(
-                  "is-paused"
-                );
+          position =
+            positionStart +
+            difference;
 
-              }
+
+          /*
+            Geschwindigkeit merken,
+            damit es nach dem Loslassen
+            etwas nachrollt.
+          */
+
+          const movement =
+            event.clientX -
+            lastPointerX;
+
+
+          velocity =
+            movement *
+            0.75;
+
+
+          lastPointerX =
+            event.clientX;
+
+
+          normalizePosition();
+
+        }
+      );
+
+
+      /* =================================================
+         LOSLASSEN
+      ================================================= */
+
+      function finishDrag(
+        event
+      ) {
+
+        if (
+          !isDragging
+        ) {
+
+          return;
+
+        }
+
+
+        isDragging =
+          false;
+
+
+        workGrid.classList.remove(
+          "is-dragging"
+        );
+
+
+        resumeTime =
+          performance.now() +
+          1200;
+
+
+        if (
+          event.pointerId !==
+          undefined
+        ) {
+
+          try {
+
+            workGrid.releasePointerCapture(
+              event.pointerId
             );
 
           }
-        );
+
+          catch (error) {
+
+            /* nichts */
+
+          }
+
+        }
 
       }
 
 
-      setupCardHover();
+      workGrid.addEventListener(
+        "pointerup",
+        finishDrag
+      );
 
 
-      /* =====================================================
+      workGrid.addEventListener(
+        "pointercancel",
+        finishDrag
+      );
+
+
+      /* =================================================
+         VERHINDERT LINK-ÖFFNEN,
+         WENN MAN NUR GEZOGEN HAT
+      ================================================= */
+
+      let dragDistance =
+        0;
+
+
+      workGrid.addEventListener(
+        "pointerdown",
+        () => {
+
+          dragDistance =
+            0;
+
+        }
+      );
+
+
+      workGrid.addEventListener(
+        "pointermove",
+        event => {
+
+          if (
+            isDragging
+          ) {
+
+            dragDistance +=
+              Math.abs(
+                event.movementX || 0
+              );
+
+          }
+
+        }
+      );
+
+
+      workGrid.addEventListener(
+        "click",
+        event => {
+
+          if (
+            dragDistance >
+            10
+          ) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+          }
+
+        },
+        true
+      );
+
+
+      /* =================================================
          FENSTERGRÖSSE
-      ===================================================== */
+      ================================================= */
 
       let resizeTimer;
 
@@ -558,11 +651,7 @@ document.addEventListener(
 
           resizeTimer =
             setTimeout(
-              () => {
-
-                updateLoopDistance();
-
-              },
+              calculateLoopWidth,
               150
             );
 
@@ -573,7 +662,7 @@ document.addEventListener(
 
 
     /* =====================================================
-       HERO 3D MAUS
+       HERO MIKAEL / PAULA MAUSBEWEGUNG
     ===================================================== */
 
     const hero =
@@ -605,8 +694,7 @@ document.addEventListener(
             (
               event.clientX -
               rect.left
-            )
-            /
+            ) /
             rect.width;
 
 
@@ -614,8 +702,7 @@ document.addEventListener(
             (
               event.clientY -
               rect.top
-            )
-            /
+            ) /
             rect.height;
 
 
@@ -623,18 +710,14 @@ document.addEventListener(
             (
               mouseX -
               0.5
-            )
-            *
-            6;
+            ) * 6;
 
 
           const rotateX =
             (
               0.5 -
               mouseY
-            )
-            *
-            5;
+            ) * 5;
 
 
           heroCard.style.transform =
