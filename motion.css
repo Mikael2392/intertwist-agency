@@ -1,0 +1,1062 @@
+/* ================================================
+   INTERTWIST MOTION
+================================================ */
+
+
+/* ================================================
+   HERO EINBLENDEN
+================================================ */
+
+.hero__grid > div:first-child {
+  position: relative;
+  z-index: 2;
+}
+
+
+.hero .kicker {
+  animation:
+    heroFadeUp
+    0.8s
+    0.15s
+    both;
+}
+
+
+.hero h1 {
+  animation:
+    heroTitleIn
+    1s
+    0.3s
+    both;
+}
+
+
+.hero__lead {
+  animation:
+    heroFadeUp
+    0.9s
+    0.55s
+    both;
+}
+
+
+.hero__actions {
+  animation:
+    heroFadeUp
+    0.9s
+    0.72s
+    both;
+}
+
+
+.hero__proof {
+  animation:
+    heroFadeUp
+    0.9s
+    0.88s
+    both;
+}
+
+
+/* bewegte CODE-Farbe */
+
+.hero h1 span {
+  display: inline-block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #eaff00,
+      #ffb382,
+      #ff69c7,
+      #47f1c4,
+      #eaff00
+    );
+
+  background-size:
+    300% 100%;
+
+  -webkit-background-clip:
+    text;
+
+  background-clip:
+    text;
+
+  color:
+    transparent;
+
+  animation:
+    codeColors
+    6s
+    linear
+    infinite;
+}
+
+
+/* ================================================
+   MIKAEL / PAULA
+================================================ */
+
+.hero__card {
+  position: relative;
+
+  z-index: 2;
+
+  transform-style:
+    preserve-3d;
+
+  animation:
+    heroCardEnter
+    1.1s
+    0.45s
+    both,
+
+    heroCardFloat
+    7s
+    1.7s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform
+    0.15s
+    ease-out,
+
+    border-color
+    0.3s
+    ease,
+
+    box-shadow
+    0.3s
+    ease;
+}
+
+
+.hero__card:hover {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.23
+    );
+
+  box-shadow:
+    0
+    40px
+    100px
+    rgba(
+      0,
+      0,
+      0,
+      0.42
+    );
+}
+
+
+/* Mikael */
+
+.hero__person {
+  animation:
+    mikaelFloat
+    5s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform
+    0.3s
+    ease,
+
+    border-color
+    0.3s
+    ease,
+
+    box-shadow
+    0.3s
+    ease;
+}
+
+
+.hero__person:hover {
+  transform:
+    scale(1.02);
+
+  border-color:
+    rgba(
+      234,
+      255,
+      0,
+      0.6
+    );
+
+  box-shadow:
+    0
+    15px
+    40px
+    rgba(
+      234,
+      255,
+      0,
+      0.06
+    );
+}
+
+
+/* Paula */
+
+.hero__person--pink {
+  animation:
+    paulaFloat
+    5.5s
+    ease-in-out
+    infinite;
+}
+
+
+.hero__person--pink:hover {
+  border-color:
+    rgba(
+      255,
+      105,
+      199,
+      0.65
+    );
+
+  box-shadow:
+    0
+    15px
+    40px
+    rgba(
+      255,
+      105,
+      199,
+      0.08
+    );
+}
+
+
+/* gelbe Strategie-Linie */
+
+.hero__flow {
+  position:
+    relative;
+
+  overflow:
+    hidden;
+}
+
+
+.hero__flow::after {
+  content: "";
+
+  position:
+    absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left:
+    -130px;
+
+  width:
+    100px;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      transparent,
+
+      rgba(
+        255,
+        255,
+        255,
+        0.8
+      ),
+
+      transparent
+    );
+
+  transform:
+    skewX(-20deg);
+
+  animation:
+    flowShine
+    3.6s
+    infinite;
+}
+
+
+/* bewegte Hintergrund-Glows */
+
+.hero__glow--pink {
+  animation:
+    pinkGlow
+    10s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+.hero__glow--mint {
+  animation:
+    mintGlow
+    12s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+/* ================================================
+   GROSSES GELBES LAUFBAND
+================================================ */
+
+.marquee {
+  width:
+    100%;
+
+  overflow:
+    hidden;
+
+  background:
+    #eaff00;
+
+  color:
+    #070707;
+
+  border-top:
+    2px solid
+    #070707;
+
+  border-bottom:
+    2px solid
+    #070707;
+
+  transform:
+    rotate(-0.2deg);
+
+  box-shadow:
+    0
+    0
+    45px
+    rgba(
+      234,
+      255,
+      0,
+      0.12
+    );
+}
+
+
+/*
+  überschreibt die alte
+  .marquee div-Regel aus styles.css
+*/
+
+.marquee .marquee__track {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  width:
+    max-content;
+
+  padding:
+    0;
+
+  margin:
+    0;
+
+  animation:
+    intertwistMarquee
+    30s
+    linear
+    infinite;
+
+  will-change:
+    transform;
+}
+
+
+.marquee .marquee__group {
+  flex-shrink:
+    0;
+
+  width:
+    auto;
+
+  margin:
+    0;
+
+  padding:
+    27px
+    38px;
+
+  font-family:
+    Manrope,
+    Inter,
+    sans-serif;
+
+  font-size:
+    clamp(
+      21px,
+      2vw,
+      30px
+    );
+
+  line-height:
+    1;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    1.5px;
+
+  white-space:
+    nowrap;
+
+  animation:
+    none;
+
+  transform:
+    none;
+}
+
+
+.marquee:hover
+.marquee__track {
+  animation-play-state:
+    paused;
+}
+
+
+@keyframes intertwistMarquee {
+
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(-25%);
+  }
+
+}
+
+
+/* ================================================
+   PROOF OVER PROMISES
+================================================ */
+
+#work {
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  padding-bottom:
+    135px;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+
+      rgba(
+        234,
+        255,
+        0,
+        0.035
+      ),
+
+      transparent
+      42%
+    );
+}
+
+
+#work .section-head h2 {
+  font-size:
+    clamp(
+      52px,
+      7vw,
+      96px
+    );
+
+  line-height:
+    0.9;
+}
+
+
+/* Projektband */
+
+#work .work-grid {
+  display:
+    flex;
+
+  grid-template-columns:
+    none;
+
+  width:
+    max-content;
+
+  max-width:
+    none;
+
+  gap:
+    20px;
+
+  overflow:
+    visible;
+
+  animation:
+    intertwistProjectRail
+    55s
+    linear
+    infinite;
+
+  will-change:
+    transform;
+}
+
+
+#work .work-grid:hover {
+  animation-play-state:
+    paused;
+}
+
+
+/* Projektkarte */
+
+#work .work {
+  position:
+    relative;
+
+  flex:
+    0 0
+    clamp(
+      320px,
+      38vw,
+      510px
+    );
+
+  min-height:
+    355px;
+
+  overflow:
+    hidden;
+
+  isolation:
+    isolate;
+
+  padding:
+    26px;
+
+  border-radius:
+    26px;
+
+  background:
+    #101113;
+
+  box-shadow:
+    0
+    30px
+    80px
+    rgba(
+      0,
+      0,
+      0,
+      0.4
+    );
+
+  transition:
+    transform
+    0.45s
+    cubic-bezier(
+      .2,
+      .8,
+      .2,
+      1
+    ),
+
+    border-color
+    0.4s
+    ease,
+
+    box-shadow
+    0.4s
+    ease;
+}
+
+
+/* echtes Projektbild */
+
+#work .work::before {
+  content: "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    -2;
+
+  background-image:
+    var(
+      --project-image,
+      linear-gradient(
+        145deg,
+        #151719,
+        #0a0b0c
+      )
+    );
+
+  background-size:
+    cover;
+
+  background-position:
+    top center;
+
+  filter:
+    saturate(0.92)
+    brightness(0.72);
+
+  transform:
+    scale(1.01);
+
+  transition:
+    transform
+    0.8s
+    cubic-bezier(
+      .2,
+      .8,
+      .2,
+      1
+    ),
+
+    filter
+    0.5s
+    ease;
+}
+
+
+/* Schatten über Bild */
+
+#work .work::after {
+  content: "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    -1;
+
+  background:
+    linear-gradient(
+      to top,
+
+      rgba(
+        5,
+        5,
+        5,
+        0.99
+      )
+      0%,
+
+      rgba(
+        5,
+        5,
+        5,
+        0.78
+      )
+      43%,
+
+      rgba(
+        5,
+        5,
+        5,
+        0.10
+      )
+      82%
+    );
+}
+
+
+/* jede zweite Karte etwas tiefer */
+
+#work .work:nth-child(even) {
+  transform:
+    translateY(25px);
+}
+
+
+/* Hover */
+
+#work .work:hover {
+  z-index:
+    20;
+
+  transform:
+    translateY(-8px)
+    scale(1.035);
+
+  border-color:
+    rgba(
+      234,
+      255,
+      0,
+      0.7
+    );
+
+  box-shadow:
+    0
+    40px
+    110px
+    rgba(
+      234,
+      255,
+      0,
+      0.10
+    );
+}
+
+
+#work .work:nth-child(even):hover {
+  transform:
+    translateY(15px)
+    scale(1.035);
+}
+
+
+#work .work:hover::before {
+  transform:
+    scale(1.08);
+
+  filter:
+    saturate(1)
+    brightness(0.84);
+}
+
+
+#work .work span,
+#work .work h3,
+#work .work p,
+#work .work b {
+  position:
+    relative;
+
+  z-index:
+    2;
+}
+
+
+#work .work h3 {
+  font-size:
+    clamp(
+      27px,
+      3vw,
+      38px
+    );
+}
+
+
+/* ================================================
+   KEYFRAMES HERO
+================================================ */
+
+@keyframes heroFadeUp {
+
+  from {
+    opacity:
+      0;
+
+    transform:
+      translateY(28px);
+  }
+
+  to {
+    opacity:
+      1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes heroTitleIn {
+
+  from {
+    opacity:
+      0;
+
+    transform:
+      translateY(45px);
+
+    filter:
+      blur(10px);
+  }
+
+  to {
+    opacity:
+      1;
+
+    transform:
+      translateY(0);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes codeColors {
+
+  from {
+    background-position:
+      0% 50%;
+  }
+
+  to {
+    background-position:
+      300% 50%;
+  }
+
+}
+
+
+@keyframes heroCardEnter {
+
+  from {
+    opacity:
+      0;
+
+    translate:
+      70px 0;
+  }
+
+  to {
+    opacity:
+      1;
+
+    translate:
+      0 0;
+  }
+
+}
+
+
+@keyframes heroCardFloat {
+
+  0%,
+  100% {
+    translate:
+      0 0;
+  }
+
+  50% {
+    translate:
+      0 -8px;
+  }
+
+}
+
+
+@keyframes mikaelFloat {
+
+  0%,
+  100% {
+    translate:
+      0 0;
+  }
+
+  50% {
+    translate:
+      4px -6px;
+  }
+
+}
+
+
+@keyframes paulaFloat {
+
+  0%,
+  100% {
+    translate:
+      0 0;
+  }
+
+  50% {
+    translate:
+      -4px 6px;
+  }
+
+}
+
+
+@keyframes pinkGlow {
+
+  from {
+    transform:
+      translate(
+        0,
+        0
+      )
+      scale(1);
+  }
+
+  to {
+    transform:
+      translate(
+        140px,
+        70px
+      )
+      scale(1.18);
+  }
+
+}
+
+
+@keyframes mintGlow {
+
+  from {
+    transform:
+      translate(
+        0,
+        0
+      )
+      scale(1);
+  }
+
+  to {
+    transform:
+      translate(
+        -130px,
+        -65px
+      )
+      scale(1.15);
+  }
+
+}
+
+
+@keyframes flowShine {
+
+  0% {
+    left:
+      -130px;
+  }
+
+  45%,
+  100% {
+    left:
+      calc(
+        100% + 130px
+      );
+  }
+
+}
+
+
+/* ================================================
+   PROJEKTBAND
+================================================ */
+
+@keyframes intertwistProjectRail {
+
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(
+        calc(
+          -1 *
+          var(
+            --project-loop-distance,
+            0px
+          )
+        )
+      );
+  }
+
+}
+
+
+/* ================================================
+   MOBILE
+================================================ */
+
+@media (
+  max-width:
+  700px
+) {
+
+  .marquee
+  .marquee__group {
+    padding:
+      22px
+      28px;
+
+    font-size:
+      19px;
+  }
+
+
+  #work
+  .work {
+    flex-basis:
+      84vw;
+
+    min-height:
+      320px;
+  }
+
+
+  #work
+  .work-grid {
+    animation-duration:
+      45s;
+  }
+
+}
+
+
+/* ================================================
+   REDUCED MOTION
+================================================ */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .hero__card,
+  .hero__person,
+  .hero__person--pink,
+  .hero__flow::after,
+  .hero__glow,
+  .hero h1 span,
+  .marquee__track,
+  #work .work-grid {
+    animation:
+      none !important;
+  }
+
+}
