@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Intertwist Admin</title>
+
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <main class="admin-shell">
+
+    <!-- LOGIN -->
+    <section id="loginView" class="login-card">
+
+      <div class="eyebrow">
+        INTERTWIST · INTERN
+      </div>
+
+      <h1>Admin Login</h1>
+
+      <p class="muted">
+        Nur für Mikael und Paula.
+      </p>
+
+      <form id="loginForm" class="login-form">
+
+        <label>
+          E-Mail
+
+          <input
+            id="loginEmail"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <label>
+          Passwort
+
+          <input
+            id="loginPassword"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+
+        <button
+          id="loginButton"
+          type="submit"
+        >
+          Einloggen
+        </button>
+
+        <p
+          id="loginStatus"
+          class="status-message"
+        ></p>
+
+      </form>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+    <section
+      id="dashboardView"
+      class="dashboard hidden"
+    >
+
+      <header class="topbar">
+
+        <div>
+
+          <div class="eyebrow">
+            INTERTWIST · CRM
+          </div>
+
+          <h1>
+            Anfragen & Aufträge
+          </h1>
+
+          <p
+            id="signedInAs"
+            class="muted"
+          ></p>
+
+        </div>
+
+        <div class="topbar-actions">
+
+          <a
+            class="secondary-button"
+            href="/"
+          >
+            Website
+          </a>
+
+          <button
+            id="logoutButton"
+            class="secondary-button"
+            type="button"
+          >
+            Abmelden
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- STATISTIK -->
+      <section class="stats">
+
+        <article>
+          <span id="statNew">0</span>
+          <small>Neu</small>
+        </article>
+
+        <article>
+          <span id="statReviewing">0</span>
+          <small>In Prüfung</small>
+        </article>
+
+        <article>
+          <span id="statActive">0</span>
+          <small>Laufend</small>
+        </article>
+
+        <article>
+          <span id="statCompleted">0</span>
+          <small>Abgeschlossen</small>
+        </article>
+
+      </section>
+
+
+      <!-- FILTER -->
+      <section class="toolbar">
+
+        <label>
+
+          Status filtern
+
+          <select id="statusFilter">
+
+            <option value="all">
+              Alle
+            </option>
+
+            <option value="new">
+              Neu
+            </option>
+
+            <option value="reviewing">
+              In Prüfung
+            </option>
+
+            <option value="accepted">
+              Angenommen
+            </option>
+
+            <option value="offer_sent">
+              Angebot gesendet
+            </option>
+
+            <option value="active">
+              Auftrag läuft
+            </option>
+
+            <option value="completed">
+              Abgeschlossen
+            </option>
+
+            <option value="rejected">
+              Abgelehnt
+            </option>
+
+          </select>
+
+        </label>
+
+      </section>
+
+
+      <p
+        id="dashboardStatus"
+        class="status-message"
+      ></p>
+
+
+      <!-- HIER KOMMEN DIE ANFRAGEN -->
+      <section
+        id="inquiryList"
+        class="ticket-list"
+      ></section>
+
+    </section>
+
+  </main>
+
+
+  <script
+    type="module"
+    src="admin.js"
+  ></script>
+
+</body>
+</html>
