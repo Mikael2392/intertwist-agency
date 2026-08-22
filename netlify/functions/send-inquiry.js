@@ -1,8 +1,16 @@
 export default async (request) => {
   if (request.method !== "POST") {
-    return new Response("Method not allowed", {
-      status: 405
-    });
+    return new Response(
+      JSON.stringify({
+        error: "Method not allowed"
+      }),
+      {
+        status: 405,
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
   }
 
   try {
@@ -33,9 +41,36 @@ export default async (request) => {
       );
     }
 
+    if (!email) {
+      return new Response(
+        JSON.stringify({
+          error: "Kunden-E-Mail fehlt"
+        }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+    }
+
     const internalHtml = `
-      <div style="font-family:Arial,sans-serif;max-width:650px;margin:auto;">
-        <h2>Neue Intertwist-Anfrage</h2>
+      <div style="
+        font-family: Arial, sans-serif;
+        max-width: 650px;
+        margin: auto;
+        color: #111;
+      ">
+
+        <h2>Neue Anfrage bei Intertwist</h2>
+
+        <p>
+          Eine neue Projektanfrage wurde über
+          <strong>intertwist.de</strong> gesendet.
+        </p>
+
+        <hr>
 
         <p>
           <strong>Name:</strong><br>
@@ -53,13 +88,13 @@ export default async (request) => {
         </p>
 
         <p>
-          <strong>Budget:</strong><br>
-          ${budget || "-"}
+          <strong>Leistung:</strong><br>
+          ${service || "-"}
         </p>
 
         <p>
-          <strong>Leistung:</strong><br>
-          ${service || "-"}
+          <strong>Budget:</strong><br>
+          ${budget || "-"}
         </p>
 
         <p>
@@ -73,12 +108,25 @@ export default async (request) => {
           Status:
           <strong>Neue Anfrage</strong>
         </p>
+
+        <p>
+          Bitte intern abstimmen, wer die Anfrage übernimmt.
+        </p>
+
       </div>
     `;
 
     const customerHtml = `
-      <div style="font-family:Arial,sans-serif;max-width:650px;margin:auto;">
-        <h2>Hallo ${name || ""},</h2>
+      <div style="
+        font-family: Arial, sans-serif;
+        max-width: 650px;
+        margin: auto;
+        color: #111;
+      ">
+
+        <h2>
+          Hallo ${name || ""},
+        </h2>
 
         <p>
           vielen Dank für deine Anfrage bei
@@ -97,8 +145,10 @@ export default async (request) => {
 
         <p>
           Viele Grüße<br>
-          <strong>Intertwist</strong>
+          <strong>Intertwist</strong><br>
+          intertwist.de
         </p>
+
       </div>
     `;
 
@@ -132,60 +182,53 @@ export default async (request) => {
       }
     };
 
-    // TEST:
-    // Alle drei E-Mails gehen erstmal nur an Mikael.
-    // So prüfen wir, ob Resend + Netlify Function funktionieren.
+    // 1. Interne Benachrichtigung
+    // geht gleichzeitig an Mikael und Paula
+    const internalMail = sendMail({
+      from: "Intertwist <anfrage@intertwist.de>",
+
+      to: [
+        "mikaelsmiri@gmail.com",
+        "smiripaula96@gmail.com"
+      ],
+
+      reply_to: email,
+
+      subject:
+        `Neue Anfrage – ${service || "Projekt"} – ${name || "Kunde"}`,
+
+      html: internalHtml
+    });
+
+    // 2. Bestätigung an den Kunden
+    const customerMail = sendMail({
+      from: "Intertwist <anfrage@intertwist.de>",
+
+      to: [
+        email
+      ],
+
+      subject:
+        "Deine Anfrage bei Intertwist ist angekommen",
+
+      html: customerHtml
+    });
 
     const results = await Promise.all([
-      sendMail({
-        from: "Intertwist <onboarding@resend.dev>",
-
-        to: [
-          "mikaelsmiri@gmail.com"
-        ],
-
-        subject:
-          `TEST 1 – Neue Intertwist-Anfrage – ${service || "Projekt"} – ${name || "Kunde"}`,
-
-        html: internalHtml
-      }),
-
-      sendMail({
-        from: "Intertwist <onboarding@resend.dev>",
-
-        to: [
-          "mikaelsmiri@gmail.com"
-        ],
-
-        subject:
-          `TEST 2 – Paula Benachrichtigung – ${service || "Projekt"} – ${name || "Kunde"}`,
-
-        html: internalHtml
-      }),
-
-      sendMail({
-        from: "Intertwist <onboarding@resend.dev>",
-
-        to: [
-          "mikaelsmiri@gmail.com"
-        ],
-
-        subject:
-          "TEST 3 – Deine Anfrage bei Intertwist ist angekommen",
-
-        html: customerHtml
-      })
+      internalMail,
+      customerMail
     ]);
 
     console.log(
-      "Resend erfolgreich:",
+      "Intertwist E-Mails erfolgreich verschickt:",
       results
     );
 
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Test-E-Mails wurden verschickt."
+        message:
+          "Anfrage gespeichert und E-Mails erfolgreich verschickt."
       }),
       {
         status: 200,
@@ -197,6 +240,7 @@ export default async (request) => {
     );
 
   } catch (error) {
+
     console.error(
       "SEND-INQUIRY ERROR:",
       error
