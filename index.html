@@ -1,612 +1,1908 @@
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#070707">
-  <meta name="description" content="Intertwist – Webentwicklung, Apps, SEO, Copywriting, Design, Marketing und digitale Betreuung aus Köln.">
-  <title>Intertwist — Web, Apps, SEO, Design & Marketing</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
-
-  <style>
-    body.intro-lock {
-      overflow: hidden;
-    }
-
-    .intro-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: grid;
-      place-items: center;
-      background: #050505;
-      transition: opacity 0.9s ease, visibility 0.9s ease;
-    }
-
-    .intro-overlay.is-done {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .intro-overlay__stage {
-      width: min(100%, 1400px);
-      padding: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .intro-overlay__word {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;
-      color: #ffffff;
-      font-family: "Manrope", "Inter", sans-serif;
-      font-size: clamp(42px, 10vw, 150px);
-      font-weight: 800;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      transition:
-        letter-spacing 1.2s ease,
-        transform 1.2s ease,
-        opacity 0.7s ease;
-      will-change: transform, letter-spacing;
-    }
-
-    .intro-overlay__word.is-spread {
-      letter-spacing: 0.34em;
-      transform: scale(1.02);
-    }
-
-    .intro-overlay__word span {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(22px) scale(0.94);
-      filter: blur(8px);
-      transition:
-        opacity 0.55s ease,
-        transform 0.55s ease,
-        filter 0.55s ease;
-    }
-
-    .intro-overlay__word span.is-visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0);
-    }
-
-    .intro-overlay.is-done .intro-overlay__word {
-      opacity: 0;
-      transform: scale(1.04);
-    }
-
-    @media (max-width: 700px) {
-      .intro-overlay__word {
-        letter-spacing: 0.05em;
-      }
-
-      .intro-overlay__word.is-spread {
-        letter-spacing: 0.12em;
-      }
-    }
-  </style>
-</head>
-
-<body class="intro-lock">
-
-  <!-- INTRO -->
-  <div id="introOverlay" class="intro-overlay" aria-hidden="true">
-    <div class="intro-overlay__stage">
-      <div id="introWord" class="intro-overlay__word" aria-label="INTERTWIST">
-        <span>I</span>
-        <span>N</span>
-        <span>T</span>
-        <span>E</span>
-        <span>R</span>
-        <span>T</span>
-        <span>W</span>
-        <span>I</span>
-        <span>S</span>
-        <span>T</span>
-      </div>
-    </div>
-  </div>
-
-  <header class="nav">
-    <div class="wrap nav__inner">
-      <a class="brand" href="#top">
-        <img src="./assets/intertwist-logo.png" alt="Intertwist">
-      </a>
-
-      <nav class="nav__links">
-        <a href="#services">Leistungen</a>
-        <a href="#work">Arbeiten</a>
-        <a href="#packages">Pakete</a>
-        <a href="#team">Team</a>
-      </nav>
-
-      <a class="button button--acid button--small" href="#contact">Projekt starten ↗</a>
-    </div>
-  </header>
-
-  <main id="top">
-
-    <!-- HERO -->
-    <section class="hero section">
-      <div class="hero__glow hero__glow--pink"></div>
-      <div class="hero__glow hero__glow--mint"></div>
-
-      <div class="wrap hero__grid">
-        <div>
-          <div class="kicker">DIGITAL STUDIO · KÖLN</div>
-
-          <h1>
-            Strategie. Design. <span>Code.</span><br>
-            Alles zusammen.
-          </h1>
-
-          <p class="hero__lead">
-            Intertwist verbindet Entwicklung, Cloud, SEO, Copywriting, Branding und Marketing zu einer Komplettlösung — von der ersten Idee bis zur laufenden Betreuung.
-          </p>
-
-          <div class="hero__actions">
-            <a class="button button--acid" href="#contact">Projekt anfragen ↗</a>
-            <a class="button button--ghost" href="#packages">Pakete ansehen</a>
-          </div>
-
-          <div class="hero__proof">
-            <span>Web & App</span>
-            <span>Firebase</span>
-            <span>SEO</span>
-            <span>Copy</span>
-            <span>Branding</span>
-            <span>Marketing</span>
-          </div>
-        </div>
-
-        <aside class="hero__card">
-          <p class="eyebrow">EIN TEAM · ZWEI SCHWERPUNKTE</p>
-
-          <div class="hero__person">
-            <strong>Mikael</strong>
-            <span>Development · Firebase · Deployment · Cloud</span>
-          </div>
-
-          <div class="hero__person hero__person--pink">
-            <strong>Paula</strong>
-            <span>Copy · Concept · SEO Content · Design · Marketing</span>
-          </div>
-
-          <div class="hero__flow">
-            STRATEGIE → DESIGN → BUILD → LAUNCH → GROW
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <div class="marquee" aria-hidden="true">
-      <div>
-        WEBSITES · APPS · SEO · COPYWRITING · BRANDING · MARKETING · FIREBASE · CLOUD · DEPLOYMENT · WEBSITES · APPS · SEO · COPYWRITING · BRANDING · MARKETING ·
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-    <section id="services" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">LEISTUNGEN</p>
-            <h2>Zwei Disziplinen.<br>Eine Agentur.</h2>
-          </div>
-
-          <p>
-            Nach außen bekommt der Kunde eine Komplettlösung. Intern sind die Verantwortlichkeiten klar verteilt.
-          </p>
-        </div>
-
-        <div class="split-services">
-          <article class="discipline discipline--dev">
-            <p class="eyebrow">MIKAEL · DEVELOPMENT & SYSTEMS</p>
-            <h3>Technik, die funktioniert und mitwächst.</h3>
-
-            <ul>
-              <li><span>01</span> Website-Entwicklung</li>
-              <li><span>02</span> App-Entwicklung</li>
-              <li><span>03</span> Firebase / Datenbank / Backend</li>
-              <li><span>04</span> Hosting, Deployment & AWS</li>
-              <li><span>05</span> Wartung & technische Betreuung</li>
-              <li><span>06</span> Technisches SEO & Performance</li>
-            </ul>
-
-            <a href="https://mikael-garage-portfolio.netlify.app/" target="_blank" rel="noopener">
-              Mikaels Garage Portfolio ↗
-            </a>
-          </article>
-
-          <article class="discipline discipline--creative">
-            <p class="eyebrow">PAULA · BRAND, COPY & GROWTH</p>
-            <h3>Worte und Gestaltung mit eigener Stimme.</h3>
-
-            <ul>
-              <li><span>01</span> Copywriting & Webtexte</li>
-              <li><span>02</span> SEO Content & Redaktion</li>
-              <li><span>03</span> Webdesign & Branding</li>
-              <li><span>04</span> Marketing & Kampagnen</li>
-              <li><span>05</span> Content Strategy</li>
-              <li><span>06</span> Konzept & Kundenkommunikation</li>
-            </ul>
-
-            <a href="https://paula-smiri.lovable.app/" target="_blank" rel="noopener">
-              Paulas Wortschmiede ↗
-            </a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORK / PROOF -->
-    <section id="work" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">REFERENZEN & PORTFOLIOS</p>
-            <h2>Proof over promises.</h2>
-          </div>
-
-          <p>
-            Bestehende Projekte und persönliche Portfolios zeigen Entwicklung, UX, Copy und digitale Konzeption in der Praxis.
-          </p>
-        </div>
-
-        <div class="work-grid">
-          <a class="work work--lime" href="https://solemio-apartments.com/" target="_blank" rel="noopener">
-            <span>CLIENT WEBSITE</span>
-            <h3>Sole Mio Apartments</h3>
-            <p>Direktbuchungs-Website · Mobile · SEO · Conversion</p>
-            <b>Live ansehen ↗</b>
-          </a>
-
-          <a class="work work--pink" href="https://github.com/Mikael2392/meetkoch" target="_blank" rel="noopener">
-            <span>APP / PLATFORM</span>
-            <h3>MeetKoch</h3>
-            <p>Flutter · Firebase · Auth · Firestore · Marketplace</p>
-            <b>Projekt ansehen ↗</b>
-          </a>
-
-          <div class="work work--mint">
-            <span>BUSINESS WEBSITE</span>
-            <h3>Sprache AG</h3>
-            <p>Web · Redesign · SEO · Branding</p>
-            <b>Client work</b>
-          </div>
-
-          <a class="work" href="https://paula-smiri.lovable.app/" target="_blank" rel="noopener">
-            <span>PAULA</span>
-            <h3>Wortschmiede</h3>
-            <p>Copy · Editorial · Strategy · Concept</p>
-            <b>Portfolio ↗</b>
-          </a>
-
-          <a class="work" href="https://mikael-garage-portfolio.netlify.app/" target="_blank" rel="noopener">
-            <span>MIKAEL</span>
-            <h3>Garage Portfolio</h3>
-            <p>Interactive Web · Software · DevOps</p>
-            <b>Portfolio ↗</b>
-          </a>
-
-          <a class="work" href="https://bugshunterms.netlify.app/" target="_blank" rel="noopener">
-            <span>MIKAEL</span>
-            <h3>Developer / DevOps</h3>
-            <p>Flutter · Firebase · Git · Linux · AWS</p>
-            <b>Portfolio ↗</b>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PACKAGES -->
-    <section id="packages" class="section section--soft">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">PAKETE</p>
-            <h2>Klare Leistung.<br>Klare Preise.</h2>
-          </div>
-
-          <p>
-            Richtpreise für typische Projekte. Nach dem Erstgespräch bekommt der Kunde ein konkretes Angebot.
-          </p>
-        </div>
-
-        <div class="packages">
-          <article class="package">
-            <div>
-              <p class="eyebrow">STARTER</p>
-              <h3>Business Website</h3>
-              <p class="price">ab 1.290 €</p>
-            </div>
-
-            <ul>
-              <li>4–5 Seiten</li>
-              <li>Responsive Design</li>
-              <li>Kontaktformular</li>
-              <li>Basis-SEO</li>
-              <li>Deployment</li>
-            </ul>
-
-            <a class="button button--ghost" href="#contact" data-package="Starter — Business Website">
-              Starter anfragen
-            </a>
-          </article>
-
-          <article class="package package--featured">
-            <div class="package__badge">BELIEBT</div>
-
-            <div>
-              <p class="eyebrow">BUSINESS</p>
-              <h3>Kompletter Auftritt</h3>
-              <p class="price">ab 2.900 €</p>
-            </div>
-
-            <ul>
-              <li>Individuelles Webdesign</li>
-              <li>SEO + professionelle Texte</li>
-              <li>Analytics & Conversion Setup</li>
-              <li>Hosting / Deployment</li>
-              <li>Launch-Betreuung</li>
-            </ul>
-
-            <a class="button button--acid" href="#contact" data-package="Business — Kompletter Auftritt">
-              Business anfragen
-            </a>
-          </article>
-
-          <article class="package">
-            <div>
-              <p class="eyebrow">DIGITAL BUSINESS</p>
-              <h3>Web-App / Plattform</h3>
-              <p class="price">ab 4.900 €</p>
-            </div>
-
-            <ul>
-              <li>Website oder Web-App</li>
-              <li>Firebase / Datenbank</li>
-              <li>Login / Kundenbereich</li>
-              <li>Branding + SEO</li>
-              <li>Cloud & Betreuung</li>
-            </ul>
-
-            <a class="button button--ghost" href="#contact" data-package="Digital Business — Web-App / Plattform">
-              Premium anfragen
-            </a>
-          </article>
-        </div>
-
-        <div class="retainers">
-          <article>
-            <strong>Care</strong>
-            <span>Hosting, Updates, kleine Änderungen</span>
-            <b>ab 99 €/Monat</b>
-          </article>
-
-          <article>
-            <strong>Growth</strong>
-            <span>SEO, Content, Technik & Marketing</span>
-            <b>ab 349 €/Monat</b>
-          </article>
-
-          <article>
-            <strong>Partner</strong>
-            <span>Laufende Entwicklung + Growth Support</span>
-            <b>ab 599 €/Monat</b>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM / PROCESS -->
-    <section id="team" class="section section--soft">
-      <div class="wrap team">
-        <div>
-          <p class="eyebrow">SO ARBEITEN WIR</p>
-          <h2>Ein Ansprechpartner.<br>Der ganze Prozess.</h2>
-        </div>
-
-        <ol>
-          <li>
-            <span>01</span>
-            <div>
-              <strong>Discovery</strong>
-              <p>Ziele, Zielgruppe, Funktionen und Budget klären.</p>
-            </div>
-          </li>
-
-          <li>
-            <span>02</span>
-            <div>
-              <strong>Konzept & Design</strong>
-              <p>Struktur, Tonalität, UX und visuelles System entwickeln.</p>
-            </div>
-          </li>
-
-          <li>
-            <span>03</span>
-            <div>
-              <strong>Build</strong>
-              <p>Frontend, Backend, Firebase, SEO und Tracking umsetzen.</p>
-            </div>
-          </li>
-
-          <li>
-            <span>04</span>
-            <div>
-              <strong>Launch & Growth</strong>
-              <p>Veröffentlichen, messen, optimieren und weiter betreuen.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact">
-      <div class="wrap contact__grid">
-        <div>
-          <p class="eyebrow">PROJEKT STARTEN</p>
-          <h2>Erzähl uns, was du bauen willst.</h2>
-
-          <p class="hero__lead">
-            Die Anfrage landet direkt in Firestore. Nach erfolgreichem Versand erhält der Interessent automatisch eine Bestätigung per E-Mail.
-          </p>
-
-          <div class="contact__note">
-            <strong>Automatisch:</strong> Anfrage speichern → Bestätigung senden → interne Benachrichtigung an Intertwist.
-          </div>
-        </div>
-
-        <form id="inquiryForm" class="form" novalidate>
-          <div class="hp" aria-hidden="true">
-            <label>
-              Website
-              <input name="website" tabindex="-1" autocomplete="off">
-            </label>
-          </div>
-
-          <div class="form__2">
-            <label>
-              Name
-              <input name="name" required maxlength="120" placeholder="Vor- und Nachname">
-            </label>
-
-            <label>
-              E-Mail
-              <input name="email" type="email" required maxlength="200" placeholder="name@firma.de">
-            </label>
-          </div>
-
-          <div class="form__2">
-            <label>
-              Unternehmen
-              <input name="company" maxlength="160" placeholder="Optional">
-            </label>
-
-            <label>
-              Budget
-              <select name="budget">
-                <option value="">Auswählen</option>
-                <option>900–1.500 €</option>
-                <option>2.000–3.500 €</option>
-                <option>4.000–7.500 €</option>
-                <option>7.500 €+</option>
-              </select>
-            </label>
-          </div>
-
-          <label>
-            Leistung
-            <select name="service" required>
-              <option value="">Bitte auswählen</option>
-              <option>Website</option>
-              <option>App</option>
-              <option>SEO</option>
-              <option>Branding / Design</option>
-              <option>Copywriting</option>
-              <option>Marketing</option>
-              <option>Komplettpaket</option>
-            </select>
-          </label>
-
-          <label>
-            Nachricht
-            <textarea name="message" rows="6" required maxlength="5000" placeholder="Was ist das Ziel? Was soll gebaut oder verbessert werden?"></textarea>
-          </label>
-
-          <label class="privacy">
-            <input type="checkbox" name="privacy" required>
-            <span>
-              Ich habe die <a href="./datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.
-            </span>
-          </label>
-
-          <button id="submitButton" class="button button--acid" type="submit">
-            Anfrage senden ↗
-          </button>
-
-          <p id="formStatus" class="form__status" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="wrap footer__grid">
-      <div>
-        <img src="./assets/intertwist-logo.png" alt="Intertwist">
-        <p>Web · Apps · SEO · Copy · Design · Marketing</p>
-      </div>
-
-      <div>
-        <a href="./impressum.html">Impressum</a>
-        <a href="./datenschutz.html">Datenschutz</a>
-      </div>
-
-      <div>© 2026 Intertwist · Köln</div>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      const overlay = document.getElementById("introOverlay");
-      const word = document.getElementById("introWord");
-
-      if (!overlay || !word) {
-        document.body.classList.remove("intro-lock");
-        return;
-      }
-
-      const letters = Array.from(word.querySelectorAll("span"));
-
-      const revealSteps = [
-        [0, 9],
-        [1, 8],
-        [2, 7],
-        [3, 6],
-        [4, 5]
-      ];
-
-      revealSteps.forEach((pair, stepIndex) => {
-        setTimeout(() => {
-          pair.forEach((letterIndex) => {
-            if (letters[letterIndex]) {
-              letters[letterIndex].classList.add("is-visible");
-            }
-          });
-        }, 140 + stepIndex * 170);
-      });
-
-      setTimeout(() => {
-        word.classList.add("is-spread");
-      }, 1180);
-
-      setTimeout(() => {
-        overlay.classList.add("is-done");
-      }, 2350);
-
-      setTimeout(() => {
-        document.body.classList.remove("intro-lock");
-        overlay.remove();
-      }, 3300);
-    })();
-  </script>
-
-  <script type="module" src="./app.js"></script>
-</body>
-</html>
+:root {
+  --bg: #070707;
+  --panel: #101113;
+
+  --text: #ffffff;
+  --muted: #b7bac1;
+
+  --line: rgba(255, 255, 255, 0.12);
+
+  --acid: #eaff00;
+  --pink: #ff69c7;
+  --mint: #47f1c4;
+  --peach: #ffb382;
+
+  --wrap: 1180px;
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(255, 105, 199, 0.10),
+      transparent 26%
+    ),
+
+    radial-gradient(
+      circle at 90% 24%,
+      rgba(71, 241, 196, 0.08),
+      transparent 28%
+    ),
+
+    var(--bg);
+
+  color: var(--text);
+
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+body.intro-lock {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width:
+    min(
+      calc(100% - 36px),
+      var(--wrap)
+    );
+
+  margin: auto;
+}
+
+.section {
+  padding: 104px 0;
+}
+
+.section--soft {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.025
+    );
+
+  border-block:
+    1px solid var(--line);
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: grid;
+  place-items: center;
+
+  background: #030303;
+
+  transition:
+    opacity 0.9s ease,
+    visibility 0.9s ease;
+}
+
+.intro-overlay.is-done {
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+.intro-overlay__stage {
+  width:
+    min(
+      100%,
+      1600px
+    );
+
+  padding: 20px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-overlay__word {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  white-space: nowrap;
+
+  color: #ffffff;
+
+  font-family:
+    "Manrope",
+    "Inter",
+    sans-serif;
+
+  font-size:
+    clamp(
+      45px,
+      10vw,
+      155px
+    );
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.06em;
+
+  transition:
+    letter-spacing 1.2s ease,
+    transform 1.2s ease,
+    opacity 0.7s ease;
+}
+
+.intro-overlay__word.is-spread {
+  letter-spacing: 0.30em;
+
+  transform:
+    scale(1.03);
+}
+
+.intro-overlay__word span {
+  display: inline-block;
+
+  opacity: 0;
+
+  transform:
+    translateY(24px)
+    scale(0.93);
+
+  filter: blur(9px);
+
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease,
+    filter 0.55s ease;
+}
+
+.intro-overlay__word span.is-visible {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  filter: blur(0);
+}
+
+.intro-overlay.is-done
+.intro-overlay__word {
+  opacity: 0;
+
+  transform:
+    scale(1.07);
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 30;
+
+  background:
+    rgba(
+      7,
+      7,
+      7,
+      0.84
+    );
+
+  backdrop-filter:
+    blur(16px);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.nav__inner {
+  height: 78px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 24px;
+}
+
+.brand img {
+  display: block;
+
+  width: 136px;
+  height: 58px;
+
+  object-fit: contain;
+}
+
+.nav__links {
+  display: flex;
+
+  gap: 24px;
+
+  color: #d4d6db;
+
+  font-size: 14px;
+}
+
+.nav__links a:hover {
+  color: var(--acid);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 50px;
+
+  padding:
+    0
+    20px;
+
+  border-radius: 14px;
+
+  border:
+    1px solid transparent;
+
+  font:
+    800
+    14px
+    Inter;
+
+  cursor: pointer;
+}
+
+.button--small {
+  min-height: 43px;
+
+  padding:
+    0
+    16px;
+}
+
+.button--acid {
+  background: var(--acid);
+
+  color: #080808;
+}
+
+.button--ghost {
+  border-color: var(--line);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.04
+    );
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  position: relative;
+
+  overflow: hidden;
+
+  padding-top: 120px;
+}
+
+.hero__glow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  filter:
+    blur(105px);
+
+  opacity: 0.22;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.hero__glow--pink {
+  background:
+    var(--pink);
+
+  left: -180px;
+
+  top: 0;
+}
+
+.hero__glow--mint {
+  background:
+    var(--mint);
+
+  right: -160px;
+
+  bottom: -100px;
+}
+
+.hero__grid {
+  display: grid;
+
+  grid-template-columns:
+    1.15fr
+    0.85fr;
+
+  gap: 64px;
+
+  align-items: center;
+
+  position: relative;
+}
+
+.kicker,
+.eyebrow {
+  color: var(--acid);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+  text-transform: uppercase;
+}
+
+.kicker {
+  display: inline-flex;
+
+  padding:
+    9px
+    13px;
+
+  background:
+    var(--acid);
+
+  color: #070707;
+
+  border-radius: 999px;
+}
+
+.hero h1,
+h2 {
+  font-family:
+    Manrope,
+    sans-serif;
+
+  letter-spacing: -0.05em;
+}
+
+.hero h1 {
+  font-size:
+    clamp(
+      54px,
+      7vw,
+      94px
+    );
+
+  line-height: 0.92;
+
+  margin:
+    24px
+    0;
+}
+
+.hero h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      var(--acid),
+      var(--peach),
+      var(--pink)
+    );
+
+  -webkit-background-clip:
+    text;
+
+  background-clip:
+    text;
+
+  color: transparent;
+}
+
+.hero__lead {
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: var(--muted);
+
+  max-width: 720px;
+}
+
+.hero__actions {
+  display: flex;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+  margin:
+    30px
+    0;
+}
+
+.hero__proof {
+  display: flex;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+.hero__proof span {
+  padding:
+    7px
+    10px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  color: #d8dadd;
+}
+
+.hero__card {
+  border:
+    1px solid var(--line);
+
+  border-radius: 28px;
+
+  padding: 26px;
+
+  background:
+    linear-gradient(
+      150deg,
+      rgba(
+        255,
+        105,
+        199,
+        0.12
+      ),
+      rgba(
+        71,
+        241,
+        196,
+        0.07
+      )
+    );
+
+  box-shadow:
+    0
+    35px
+    90px
+    rgba(
+      0,
+      0,
+      0,
+      0.3
+    );
+}
+
+.hero__person {
+  margin-top: 16px;
+
+  padding: 22px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(
+      234,
+      255,
+      0,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      234,
+      255,
+      0,
+      0.22
+    );
+}
+
+.hero__person--pink {
+  background:
+    rgba(
+      255,
+      105,
+      199,
+      0.10
+    );
+
+  border-color:
+    rgba(
+      255,
+      105,
+      199,
+      0.25
+    );
+}
+
+.hero__person strong {
+  display: block;
+
+  font:
+    800
+    26px
+    Manrope;
+
+  margin-bottom: 5px;
+}
+
+.hero__person span {
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+.hero__flow {
+  margin-top: 18px;
+
+  color: #111111;
+
+  background:
+    var(--acid);
+
+  padding:
+    10px
+    12px;
+
+  border-radius: 10px;
+
+  font-size: 11px;
+
+  font-weight: 900;
+}
+
+
+/* =========================
+   GROSSE LAUFZEILE
+========================= */
+
+.marquee {
+  overflow: hidden;
+
+  background:
+    var(--acid);
+
+  color: #070707;
+
+  border-block:
+    2px solid #070707;
+
+  transform:
+    rotate(-0.25deg);
+
+  box-shadow:
+    0
+    0
+    40px
+    rgba(
+      234,
+      255,
+      0,
+      0.10
+    );
+}
+
+.marquee div {
+  width: max-content;
+
+  padding:
+    19px
+    0;
+
+  font-size:
+    clamp(
+      16px,
+      1.5vw,
+      21px
+    );
+
+  font-weight: 900;
+
+  letter-spacing:
+    1.5px;
+
+  white-space: nowrap;
+
+  animation:
+    marqueeMove
+    19s
+    linear
+    infinite;
+}
+
+@keyframes marqueeMove {
+
+  to {
+    transform:
+      translateX(-40%);
+  }
+
+}
+
+
+/* =========================
+   SECTION HEAD
+========================= */
+
+.section-head {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    0.75fr;
+
+  gap: 40px;
+
+  align-items: end;
+
+  margin-bottom: 44px;
+}
+
+.section-head h2,
+h2 {
+  font-size:
+    clamp(
+      40px,
+      5vw,
+      68px
+    );
+
+  line-height: 0.98;
+
+  margin:
+    12px
+    0;
+}
+
+.section-head > p {
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.split-services {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 18px;
+}
+
+.discipline {
+  border:
+    1px solid var(--line);
+
+  border-radius: 26px;
+
+  padding: 30px;
+
+  background:
+    var(--panel);
+}
+
+.discipline--dev {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        234,
+        255,
+        0,
+        0.10
+      ),
+      var(--panel)
+    );
+}
+
+.discipline--creative {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        255,
+        105,
+        199,
+        0.11
+      ),
+      var(--panel)
+    );
+}
+
+.discipline h3 {
+  font:
+    800
+    31px /
+    1.08
+    Manrope;
+
+  margin:
+    14px
+    0
+    28px;
+}
+
+.discipline ul,
+.package ul {
+  list-style: none;
+
+  padding: 0;
+
+  margin:
+    0
+    0
+    28px;
+}
+
+.discipline li {
+  display: flex;
+
+  gap: 14px;
+
+  padding:
+    14px
+    0;
+
+  border-top:
+    1px solid var(--line);
+}
+
+.discipline li span {
+  color: var(--acid);
+
+  font-size: 11px;
+
+  font-weight: 900;
+}
+
+.discipline a {
+  font-weight: 800;
+
+  text-decoration:
+    underline;
+
+  text-decoration-color:
+    var(--acid);
+
+  text-underline-offset:
+    5px;
+}
+
+
+/* =========================
+   PROOF / SHOWCASE
+========================= */
+
+.proof-section {
+  position: relative;
+
+  overflow: hidden;
+
+  padding-bottom: 130px;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(
+        234,
+        255,
+        0,
+        0.045
+      ),
+      transparent 38%
+    );
+}
+
+.proof-heading {
+  margin-bottom: 55px;
+}
+
+.proof-heading h2 {
+  font-size:
+    clamp(
+      52px,
+      7vw,
+      100px
+    );
+
+  line-height: 0.88;
+}
+
+.showcase {
+  width: 100%;
+
+  overflow: hidden;
+
+  padding:
+    20px
+    0
+    40px;
+
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent
+    );
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent
+    );
+}
+
+.showcase-track {
+  display: flex;
+
+  width: max-content;
+
+  animation:
+    showcaseMove
+    45s
+    linear
+    infinite;
+
+  will-change:
+    transform;
+}
+
+.showcase:hover
+.showcase-track {
+  animation-play-state:
+    paused;
+}
+
+.showcase-group {
+  display: flex;
+
+  gap: 20px;
+
+  padding-right: 20px;
+}
+
+.showcase-card {
+  position: relative;
+
+  flex:
+    0
+    0
+    clamp(
+      330px,
+      43vw,
+      560px
+    );
+
+  aspect-ratio:
+    16 / 10;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.15
+    );
+
+  border-radius: 26px;
+
+  background:
+    var(--panel);
+
+  box-shadow:
+    0
+    30px
+    80px
+    rgba(
+      0,
+      0,
+      0,
+      0.45
+    );
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.showcase-card:nth-child(even) {
+  transform:
+    translateY(20px);
+}
+
+.showcase-card:hover {
+  z-index: 5;
+
+  transform:
+    translateY(-6px)
+    scale(1.025);
+
+  border-color:
+    var(--acid);
+
+  box-shadow:
+    0
+    35px
+    100px
+    rgba(
+      234,
+      255,
+      0,
+      0.12
+    );
+}
+
+.showcase-card:nth-child(even):hover {
+  transform:
+    translateY(12px)
+    scale(1.025);
+}
+
+.showcase-card img {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: top;
+
+  transition:
+    transform 0.7s
+    cubic-bezier(
+      0.2,
+      0.8,
+      0.2,
+      1
+    );
+
+  filter:
+    saturate(0.9)
+    contrast(1.03);
+}
+
+.showcase-card:hover img {
+  transform:
+    scale(1.07);
+}
+
+.showcase-card__shade {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(
+        0,
+        0,
+        0,
+        0.97
+      )
+      0%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.55
+      )
+      38%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.05
+      )
+      72%
+    );
+}
+
+.showcase-card__content {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 2;
+
+  padding: 28px;
+}
+
+.showcase-card__content span {
+  color:
+    var(--acid);
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.6px;
+}
+
+.showcase-card__content h3 {
+  margin:
+    10px
+    0
+    5px;
+
+  font:
+    800
+    clamp(
+      25px,
+      3vw,
+      38px
+    )
+    Manrope;
+}
+
+.showcase-card__content p {
+  margin:
+    0
+    0
+    15px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  font-size: 13px;
+}
+
+.showcase-card__content b {
+  font-size: 13px;
+
+  transition:
+    color 0.25s ease;
+}
+
+.showcase-card:hover
+.showcase-card__content b {
+  color: var(--acid);
+}
+
+@keyframes showcaseMove {
+
+  to {
+    transform:
+      translateX(-50%);
+  }
+
+}
+
+
+/* =========================
+   PACKAGES
+========================= */
+
+.packages {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap: 16px;
+}
+
+.package {
+  position: relative;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 24px;
+
+  padding: 26px;
+
+  background:
+    var(--panel);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content:
+    space-between;
+
+  min-height: 440px;
+}
+
+.package--featured {
+  border-color:
+    rgba(
+      234,
+      255,
+      0,
+      0.55
+    );
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(
+        234,
+        255,
+        0,
+        0.10
+      ),
+      var(--panel)
+    );
+}
+
+.package__badge {
+  position: absolute;
+
+  right: 18px;
+  top: 18px;
+
+  padding:
+    6px
+    9px;
+
+  background:
+    var(--acid);
+
+  color:
+    #070707;
+
+  border-radius:
+    999px;
+
+  font-size:
+    10px;
+
+  font-weight:
+    900;
+}
+
+.package h3 {
+  font:
+    800
+    26px
+    Manrope;
+
+  margin:
+    12px
+    0;
+}
+
+.price {
+  font:
+    800
+    34px
+    Manrope;
+
+  margin:
+    14px
+    0;
+}
+
+.package li {
+  padding:
+    9px
+    0;
+
+  color:
+    #d8d9dd;
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+}
+
+.retainers {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap: 12px;
+
+  margin-top:
+    16px;
+}
+
+.retainers article {
+  display: grid;
+
+  gap: 5px;
+
+  padding: 18px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 16px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.03
+    );
+}
+
+.retainers span {
+  font-size: 12px;
+
+  color:
+    var(--muted);
+}
+
+.retainers b {
+  color:
+    var(--acid);
+
+  margin-top:
+    5px;
+}
+
+
+/* =========================
+   TEAM
+========================= */
+
+.team {
+  display: grid;
+
+  grid-template-columns:
+    0.8fr
+    1.2fr;
+
+  gap: 60px;
+}
+
+.team ol {
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+.team li {
+  display: grid;
+
+  grid-template-columns:
+    55px
+    1fr;
+
+  gap: 14px;
+
+  padding:
+    20px
+    0;
+
+  border-top:
+    1px solid var(--line);
+}
+
+.team li > span {
+  color:
+    var(--acid);
+
+  font-weight:
+    900;
+}
+
+.team strong {
+  font:
+    800
+    21px
+    Manrope;
+}
+
+.team p {
+  color:
+    var(--muted);
+
+  margin:
+    5px
+    0;
+
+  line-height:
+    1.5;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact__grid {
+  display: grid;
+
+  grid-template-columns:
+    0.85fr
+    1.15fr;
+
+  gap: 60px;
+
+  align-items:
+    start;
+}
+
+.contact__note {
+  margin-top:
+    24px;
+
+  padding: 16px;
+
+  border-left:
+    3px solid
+    var(--acid);
+
+  background:
+    rgba(
+      234,
+      255,
+      0,
+      0.06
+    );
+
+  color:
+    var(--muted);
+
+  line-height:
+    1.6;
+}
+
+.form {
+  display: grid;
+
+  gap: 15px;
+
+  padding: 26px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    24px;
+
+  background:
+    var(--panel);
+}
+
+.form__2 {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 12px;
+}
+
+.form label {
+  display: grid;
+
+  gap: 7px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.8px;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    12px;
+
+  background:
+    #0b0c0e;
+
+  color:
+    #ffffff;
+
+  padding:
+    14px;
+
+  font:
+    500
+    14px
+    Inter;
+
+  outline: none;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color:
+    var(--acid);
+}
+
+.form select option {
+  color:
+    #111111;
+}
+
+.privacy {
+  grid-template-columns:
+    20px
+    1fr !important;
+
+  align-items:
+    start;
+
+  text-transform:
+    none !important;
+
+  letter-spacing:
+    0 !important;
+
+  font-size:
+    12px !important;
+
+  line-height:
+    1.5;
+
+  color:
+    var(--muted);
+}
+
+.privacy input {
+  width:
+    16px;
+
+  height:
+    16px;
+}
+
+.privacy a {
+  text-decoration:
+    underline;
+}
+
+.form__status {
+  min-height:
+    20px;
+
+  margin: 0;
+
+  font-size:
+    13px;
+}
+
+.form__status.ok {
+  color:
+    var(--mint);
+}
+
+.form__status.error {
+  color:
+    #ff7a9c;
+}
+
+.hp {
+  position:
+    absolute !important;
+
+  left:
+    -99999px !important;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  border-top:
+    1px solid var(--line);
+
+  padding:
+    34px
+    0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    12px;
+}
+
+.footer__grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    auto;
+
+  gap:
+    28px;
+
+  align-items:
+    center;
+}
+
+.footer img {
+  width:
+    105px;
+
+  height:
+    48px;
+
+  object-fit:
+    contain;
+}
+
+.footer p {
+  margin:
+    4px
+    0;
+}
+
+.footer__grid >
+div:nth-child(2) {
+  display: flex;
+
+  gap:
+    15px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .nav__links {
+    display: none;
+  }
+
+  .hero__grid,
+  .section-head,
+  .split-services,
+  .team,
+  .contact__grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .packages {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+  .retainers {
+    grid-template-columns:
+      1fr;
+  }
+
+  .hero__card {
+    max-width:
+      620px;
+  }
+
+  .section {
+    padding:
+      78px
+      0;
+  }
+
+  .showcase-card {
+    flex-basis:
+      70vw;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 620px) {
+
+  .wrap {
+    width:
+      calc(
+        100% - 28px
+      );
+  }
+
+  .nav__inner {
+    height:
+      70px;
+  }
+
+  .brand img {
+    width:
+      102px;
+
+    height:
+      46px;
+  }
+
+  .button--small {
+    font-size:
+      11px;
+
+    min-height:
+      40px;
+
+    padding:
+      0
+      12px;
+  }
+
+  .hero {
+    padding-top:
+      86px;
+  }
+
+  .hero h1 {
+    font-size:
+      clamp(
+        43px,
+        12vw,
+        58px
+      );
+  }
+
+  .hero__lead {
+    font-size:
+      16px;
+  }
+
+  .hero__actions {
+    display:
+      grid;
+  }
+
+  .hero__actions
+  .button {
+    width:
+      100%;
+  }
+
+  .section-head {
+    gap:
+      10px;
+  }
+
+  .packages {
+    grid-template-columns:
+      1fr;
+  }
+
+  .form__2 {
+    grid-template-columns:
+      1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .footer__grid >
+  div:nth-child(2) {
+    justify-content:
+      flex-start;
+  }
+
+  .discipline,
+  .package,
+  .form {
+    padding:
+      20px;
+  }
+
+  .retainers article {
+    padding:
+      15px;
+  }
+
+  .marquee div {
+    padding:
+      16px
+      0;
+
+    font-size:
+      15px;
+  }
+
+  .proof-heading h2 {
+    font-size:
+      clamp(
+        48px,
+        15vw,
+        72px
+      );
+  }
+
+  .showcase {
+    -webkit-mask-image:
+      none;
+
+    mask-image:
+      none;
+  }
+
+  .showcase-card {
+    flex-basis:
+      86vw;
+
+    border-radius:
+      20px;
+  }
+
+  .showcase-card__content {
+    padding:
+      20px;
+  }
+
+  .intro-overlay__word {
+    font-size:
+      11vw;
+
+    letter-spacing:
+      0.03em;
+  }
+
+  .intro-overlay__word.is-spread {
+    letter-spacing:
+      0.10em;
+  }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .marquee div,
+  .showcase-track {
+    animation:
+      none;
+  }
+
+  .showcase-track {
+    transform:
+      none;
+  }
+
+}
