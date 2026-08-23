@@ -1,10 +1,61 @@
 /* =========================================================
-   INTERTWIST LOGO SPLASH SCREEN
+   INTERTWIST FULLSCREEN LOGO INTRO
+========================================================= */
+
+.intro-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #151515 0%,
+      #080808 45%,
+      #020202 100%
+    ) !important;
+}
+
+
+/* Bühne nimmt fast den ganzen Bildschirm */
+
+.intro-overlay__stage {
+  width: 100vw !important;
+  height: 100vh !important;
+
+  max-width: none !important;
+
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  perspective: 1600px;
+}
+
+
+/* =========================================================
+   DAS ECHTE INTERTWIST LOGO
 ========================================================= */
 
 #introWord {
-  width: min(720px, 82vw) !important;
-  height: 280px !important;
+  position: relative !important;
+
+  width: 88vw !important;
+  height: 72vh !important;
+
+  max-width: 1500px !important;
+
+  display: block !important;
 
   background-image:
     url("./assets/intertwist-logo.png") !important;
@@ -21,93 +72,65 @@
   letter-spacing:
     0 !important;
 
-  animation:
-    intertwistLogoSplash
-    2.4s
-    cubic-bezier(.2,.8,.2,1)
-    both !important;
+  transform-style:
+    preserve-3d;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
 
   filter:
     drop-shadow(
-      0 0 28px
-      rgba(234,255,0,0.20)
+      0 0 40px
+      rgba(234,255,0,0.16)
     );
 
-  position:
-    relative;
+  animation:
+    intertwistBigIntro
+    2.55s
+    cubic-bezier(.16,.8,.25,1)
+    forwards !important;
 }
 
 
-/* alte Buchstaben verstecken */
+/* alte einzelnen Buchstaben weg */
 
 #introWord span {
   display: none !important;
 }
 
 
-/* wenn alter Script-Befehl is-spread kommt */
+/* =========================================================
+   ALTER SCRIPT-BEFEHL
+   darf unsere Animation nicht kaputt machen
+========================================================= */
 
 #introWord.is-spread {
   letter-spacing:
     0 !important;
-
-  transform:
-    scale(1.06) !important;
-
-  filter:
-    drop-shadow(
-      0 0 50px
-      rgba(234,255,0,0.35)
-    );
 }
 
 
-/* kleiner Licht-Effekt */
+/* =========================================================
+   LOGO ANIMATION
+========================================================= */
 
-#introWord::after {
-  content: "";
+@keyframes intertwistBigIntro {
 
-  position:
-    absolute;
-
-  inset:
-    15% 0;
-
-  background:
-    linear-gradient(
-      105deg,
-      transparent 30%,
-      rgba(255,255,255,0.18) 48%,
-      transparent 65%
-    );
-
-  transform:
-    translateX(-120%);
-
-  animation:
-    intertwistLogoShine
-    1.8s
-    0.5s
-    ease
-    forwards;
-
-  pointer-events:
-    none;
-}
-
-
-/* Logo erscheint */
-
-@keyframes intertwistLogoSplash {
+  /* unsichtbar / weit hinten */
 
   0% {
     opacity: 0;
 
     transform:
-      scale(0.78);
+      perspective(1600px)
+      translateZ(-700px)
+      scale(0.5)
+      rotateY(-55deg);
 
     filter:
-      blur(16px)
+      blur(18px)
       drop-shadow(
         0 0 0
         rgba(234,255,0,0)
@@ -115,73 +138,144 @@
   }
 
 
-  35% {
+  /* kommt schnell nach vorne */
+
+  25% {
     opacity: 1;
 
     transform:
-      scale(1);
+      perspective(1600px)
+      translateZ(-120px)
+      scale(0.86)
+      rotateY(8deg);
 
     filter:
-      blur(0)
+      blur(3px)
       drop-shadow(
         0 0 25px
-        rgba(234,255,0,0.15)
+        rgba(234,255,0,0.14)
       );
   }
 
 
-  75% {
+  /* Twist / Drehung */
+
+  48% {
     opacity: 1;
 
     transform:
-      scale(1.04);
+      perspective(1600px)
+      translateZ(30px)
+      scale(1.03)
+      rotateY(-7deg);
 
     filter:
       blur(0)
       drop-shadow(
-        0 0 45px
+        0 0 38px
+        rgba(234,255,0,0.20)
+      );
+  }
+
+
+  /* steht gerade */
+
+  68% {
+    opacity: 1;
+
+    transform:
+      perspective(1600px)
+      translateZ(60px)
+      scale(1.08)
+      rotateY(0deg);
+
+    filter:
+      blur(0)
+      drop-shadow(
+        0 0 55px
         rgba(234,255,0,0.28)
       );
   }
 
 
-  100% {
+  /* ganz groß */
+
+  84% {
     opacity: 1;
 
     transform:
-      scale(1.06);
+      perspective(1600px)
+      translateZ(90px)
+      scale(1.12)
+      rotateY(0deg);
+
+    filter:
+      blur(0)
+      drop-shadow(
+        0 0 65px
+        rgba(234,255,0,0.30)
+      );
+  }
+
+
+  /* beginnt zu verschwinden */
+
+  100% {
+    opacity: 0;
+
+    transform:
+      perspective(1600px)
+      translateZ(180px)
+      scale(1.22)
+      rotateY(0deg);
+
+    filter:
+      blur(5px)
+      drop-shadow(
+        0 0 80px
+        rgba(234,255,0,0.20)
+      );
   }
 
 }
 
 
-/* Licht fährt durchs Logo */
+/* =========================================================
+   KEIN SHINE / KEIN HIN UND HER
+========================================================= */
 
-@keyframes intertwistLogoShine {
-
-  from {
-    transform:
-      translateX(-120%);
-  }
-
-  to {
-    transform:
-      translateX(120%);
-  }
-
+#introWord::before,
+#introWord::after {
+  display: none !important;
+  content: none !important;
 }
 
 
-/* Handy */
+/* =========================================================
+   HANDY
+========================================================= */
 
 @media (max-width: 700px) {
 
   #introWord {
-    width:
-      88vw !important;
+    width: 94vw !important;
+    height: 65vh !important;
+  }
 
-    height:
-      190px !important;
+}
+
+
+/* =========================================================
+   SEHR BREITE BILDSCHIRME
+========================================================= */
+
+@media (min-width: 1500px) {
+
+  #introWord {
+    width: 82vw !important;
+    height: 76vh !important;
+
+    max-width: 1650px !important;
   }
 
 }
