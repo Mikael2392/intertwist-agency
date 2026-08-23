@@ -2,6 +2,7 @@
 <html lang="de">
 
 <head>
+
   <meta charset="utf-8">
 
   <meta
@@ -14,17 +15,126 @@
     content="#070707"
   >
 
-  <meta
-    name="description"
-    content="Intertwist – Webentwicklung, Apps, SEO, Copywriting, Design, Marketing und digitale Betreuung aus Köln."
-  >
+
+  <!-- =====================================================
+       SEO
+  ====================================================== -->
 
   <title>
-    Intertwist — Web, Apps, SEO, Design & Marketing
+    Webagentur Köln | Websites, Apps & SEO | Intertwist
   </title>
 
+  <meta
+    name="description"
+    content="Intertwist ist eine Webagentur aus Köln für Websites, Apps, SEO, Copywriting, Branding und Marketing – von Strategie und Design bis Entwicklung und Launch."
+  >
 
-  <!-- GOOGLE FONTS -->
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  >
+
+  <meta
+    name="author"
+    content="Intertwist"
+  >
+
+  <link
+    rel="canonical"
+    href="https://intertwist.de/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="de"
+    href="https://intertwist.de/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://intertwist.de/"
+  >
+
+
+  <!-- =====================================================
+       OPEN GRAPH
+  ====================================================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="de_DE"
+  >
+
+  <meta
+    property="og:site_name"
+    content="Intertwist"
+  >
+
+  <meta
+    property="og:url"
+    content="https://intertwist.de/"
+  >
+
+  <meta
+    property="og:title"
+    content="Webagentur Köln | Websites, Apps & SEO | Intertwist"
+  >
+
+  <meta
+    property="og:description"
+    content="Webentwicklung, Apps, SEO, Copywriting, Branding und Marketing aus Köln – Strategie, Design und Technik aus einer Agentur."
+  >
+
+  <meta
+    property="og:image"
+    content="https://intertwist.de/assets/intertwist-logo.png"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Intertwist Webagentur Köln"
+  >
+
+
+  <!-- =====================================================
+       X / TWITTER
+  ====================================================== -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Webagentur Köln | Websites, Apps & SEO | Intertwist"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Webentwicklung, Apps, SEO, Copywriting, Branding und Marketing aus Köln."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://intertwist.de/assets/intertwist-logo.png"
+  >
+
+  <meta
+    name="twitter:image:alt"
+    content="Intertwist Webagentur Köln"
+  >
+
+
+  <!-- =====================================================
+       GOOGLE FONTS
+  ====================================================== -->
 
   <link
     rel="preconnect"
@@ -43,28 +153,133 @@
   >
 
 
-  <!-- HAUPT CSS -->
+  <!-- =====================================================
+       CSS
+  ====================================================== -->
 
   <link
     rel="stylesheet"
     href="./styles.css"
   >
 
-
-  <!-- MOTION -->
-
   <link
     rel="stylesheet"
     href="./motion.css"
   >
 
-
-  <!-- SPLASH -->
-
   <link
     rel="stylesheet"
     href="./splash.css"
   >
+
+
+  <!-- =====================================================
+       STRUCTURED DATA / SCHEMA.ORG
+  ====================================================== -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://intertwist.de/#organization",
+        "name": "Intertwist",
+        "url": "https://intertwist.de/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://intertwist.de/assets/intertwist-logo.png"
+        },
+        "description": "Intertwist ist eine Digital- und Webagentur aus Köln für Webentwicklung, Apps, SEO, Copywriting, Branding und Marketing.",
+        "knowsAbout": [
+          "Webentwicklung",
+          "App-Entwicklung",
+          "SEO",
+          "Copywriting",
+          "Webdesign",
+          "Branding",
+          "Marketing",
+          "Firebase",
+          "Cloud",
+          "AWS"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Digitale Leistungen",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Website-Entwicklung"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "App-Entwicklung"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Suchmaschinenoptimierung (SEO)"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Copywriting und Content"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Branding und Webdesign"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Digital Marketing"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://intertwist.de/#website",
+        "url": "https://intertwist.de/",
+        "name": "Intertwist",
+        "inLanguage": "de-DE",
+        "publisher": {
+          "@id": "https://intertwist.de/#organization"
+        }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://intertwist.de/#agency",
+        "name": "Intertwist",
+        "url": "https://intertwist.de/",
+        "image": "https://intertwist.de/assets/intertwist-logo.png",
+        "description": "Webagentur aus Köln für Websites, Apps, SEO, Copywriting, Branding und Marketing.",
+        "areaServed": {
+          "@type": "City",
+          "name": "Köln"
+        },
+        "parentOrganization": {
+          "@id": "https://intertwist.de/#organization"
+        }
+      }
+    ]
+  }
+  </script>
 
 </head>
 
@@ -80,18 +295,25 @@
 
     <div class="wrap nav__inner">
 
+
       <a
         class="brand"
         href="#top"
+        aria-label="Intertwist Startseite"
       >
+
         <img
           src="./assets/intertwist-logo.png"
-          alt="Intertwist"
+          alt="Intertwist Webagentur Köln"
         >
+
       </a>
 
 
-      <nav class="nav__links">
+      <nav
+        class="nav__links"
+        aria-label="Hauptnavigation"
+      >
 
         <a href="#services">
           Leistungen
@@ -119,11 +341,16 @@
         Projekt starten ↗
       </a>
 
+
     </div>
 
   </header>
 
 
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
 
   <main id="top">
 
@@ -139,6 +366,7 @@
         class="hero__glow hero__glow--pink"
       ></div>
 
+
       <div
         class="hero__glow hero__glow--mint"
       ></div>
@@ -151,38 +379,44 @@
 
         <div>
 
+
           <div class="kicker">
-            DIGITAL STUDIO · KÖLN
+
+            DIGITAL- & WEBAGENTUR · KÖLN
+
           </div>
 
 
           <h1>
 
-            Strategie. Design.
+            Webagentur für
 
             <span>
-              Code.
+              Websites, Apps & SEO
             </span>
 
             <br>
 
-            Alles zusammen.
+            aus Köln.
 
           </h1>
 
 
           <p class="hero__lead">
 
-            Intertwist verbindet Entwicklung,
-            Cloud, SEO, Copywriting, Branding
-            und Marketing zu einer Komplettlösung
-            — von der ersten Idee bis zur
-            laufenden Betreuung.
+            Intertwist entwickelt moderne Websites,
+            Apps und digitale Lösungen für Unternehmen.
+
+            Wir verbinden Webentwicklung, SEO,
+            Copywriting, Branding, Design und Marketing
+            — von der Strategie bis zum Launch
+            und zur laufenden Betreuung.
 
           </p>
 
 
           <div class="hero__actions">
+
 
             <a
               class="button button--acid"
@@ -194,37 +428,52 @@
 
             <a
               class="button button--ghost"
-              href="#packages"
+              href="#services"
             >
-              Pakete ansehen
+              Leistungen ansehen
             </a>
+
 
           </div>
 
 
           <div class="hero__proof">
 
-            <span>Web & App</span>
+            <span>
+              Webentwicklung
+            </span>
 
-            <span>Firebase</span>
+            <span>
+              Apps
+            </span>
 
-            <span>SEO</span>
+            <span>
+              SEO
+            </span>
 
-            <span>Copy</span>
+            <span>
+              Copywriting
+            </span>
 
-            <span>Branding</span>
+            <span>
+              Branding
+            </span>
 
-            <span>Marketing</span>
+            <span>
+              Marketing
+            </span>
 
           </div>
+
 
         </div>
 
 
 
-        <!-- HERO RECHTS: INTERTWIST ALS AGENTUR -->
+        <!-- HERO RECHTS -->
 
         <aside class="hero__card">
+
 
           <p class="eyebrow">
 
@@ -236,12 +485,12 @@
           <div class="hero__person">
 
             <strong>
-              Eine Agentur.
+              Entwicklung & Systeme
             </strong>
 
             <span>
               Websites · Apps · Cloud ·
-              Backend · Systeme
+              Backend · Firebase · Deployment
             </span>
 
           </div>
@@ -252,11 +501,11 @@
           >
 
             <strong>
-              Eine Marke.
+              Marke & Wachstum
             </strong>
 
             <span>
-              SEO · Copy · Branding ·
+              SEO · Copywriting · Branding ·
               Design · Marketing
             </span>
 
@@ -269,6 +518,7 @@
 
           </div>
 
+
         </aside>
 
 
@@ -279,7 +529,7 @@
 
 
     <!-- =====================================================
-         GELBES LAUFBAND
+         MARQUEE
     ====================================================== -->
 
     <div
@@ -346,19 +596,21 @@
 
         <div class="section-head">
 
+
           <div>
 
             <p class="eyebrow">
               LEISTUNGEN
             </p>
 
+
             <h2>
 
-              Zwei Disziplinen.
+              Webentwicklung trifft
 
               <br>
 
-              Eine Agentur.
+              SEO, Content & Branding.
 
             </h2>
 
@@ -367,14 +619,14 @@
 
           <p>
 
-            Technologie und Kommunikation
-            greifen ineinander.
+            Intertwist verbindet technische Entwicklung
+            mit Kommunikation und digitalem Wachstum.
 
-            So entsteht eine Komplettlösung
-            von der technischen Umsetzung
-            bis zur Marke und Vermarktung.
+            Websites, Apps, SEO und Markenaufbau
+            kommen aus einer abgestimmten Lösung.
 
           </p>
+
 
         </div>
 
@@ -389,6 +641,7 @@
             class="discipline discipline--dev"
           >
 
+
             <p class="eyebrow">
 
               DEVELOPMENT & SYSTEMS
@@ -398,8 +651,8 @@
 
             <h3>
 
-              Technik, die funktioniert
-              und mitwächst.
+              Webentwicklung und Systeme,
+              die mit dem Unternehmen wachsen.
 
             </h3>
 
@@ -449,6 +702,7 @@
 
             </a>
 
+
           </article>
 
 
@@ -459,6 +713,7 @@
             class="discipline discipline--creative"
           >
 
+
             <p class="eyebrow">
 
               BRAND, COPY & GROWTH
@@ -468,8 +723,8 @@
 
             <h3>
 
-              Worte und Gestaltung
-              mit eigener Stimme.
+              Marken, Inhalte und Kampagnen
+              mit klarer Strategie.
 
             </h3>
 
@@ -519,10 +774,12 @@
 
             </a>
 
+
           </article>
 
 
         </div>
+
 
       </div>
 
@@ -544,6 +801,7 @@
 
         <div class="section-head">
 
+
           <div>
 
             <p class="eyebrow">
@@ -555,11 +813,11 @@
 
             <h2>
 
-              Proof over
+              Digitale Projekte.
 
               <br>
 
-              promises.
+              Echte Ergebnisse.
 
             </h2>
 
@@ -568,19 +826,16 @@
 
           <p>
 
-            Echte Projekte statt nur Versprechen.
-
-            Entwicklung, UX, Copy,
-            Design und digitale Konzeption
-            in der Praxis.
+            Websites, Apps und digitale Produkte
+            aus Entwicklung, UX, SEO,
+            Copywriting, Design und Konzeption.
 
           </p>
+
 
         </div>
 
 
-
-        <!-- PROJEKT KARUSSELL -->
 
         <div class="work-grid">
 
@@ -603,8 +858,10 @@
             </h3>
 
             <p>
-              Direktbuchungs-Website ·
+
+              Website · Direktbuchung ·
               Mobile · SEO · Conversion
+
             </p>
 
             <b>
@@ -633,8 +890,10 @@
             </h3>
 
             <p>
+
               Flutter · Firebase · Auth ·
               Firestore · Marketplace
+
             </p>
 
             <b>
@@ -663,8 +922,10 @@
             </h3>
 
             <p>
-              Copy · Editorial ·
+
+              Copywriting · Editorial ·
               Strategy · Concept
+
             </p>
 
             <b>
@@ -693,8 +954,10 @@
             </h3>
 
             <p>
+
               Interactive Web ·
-              Software · DevOps
+              Software · Development · DevOps
+
             </p>
 
             <b>
@@ -723,8 +986,10 @@
             </h3>
 
             <p>
+
               Flutter · Firebase ·
               Git · Linux · AWS
+
             </p>
 
             <b>
@@ -735,6 +1000,7 @@
 
 
         </div>
+
 
       </div>
 
@@ -756,19 +1022,21 @@
 
         <div class="section-head">
 
+
           <div>
 
             <p class="eyebrow">
               PAKETE
             </p>
 
+
             <h2>
 
-              Klare Leistung.
+              Digitale Lösungen
 
               <br>
 
-              Klare Pakete.
+              passend zum Projekt.
 
             </h2>
 
@@ -780,10 +1048,11 @@
             Drei Pakete für unterschiedliche
             Projektgrößen und Anforderungen.
 
-            Nach dem Erstgespräch erstellen wir
+            Nach einem Erstgespräch erstellen wir
             ein individuelles Angebot.
 
           </p>
+
 
         </div>
 
@@ -795,6 +1064,7 @@
           <!-- STARTER -->
 
           <article class="package">
+
 
             <div>
 
@@ -816,7 +1086,7 @@
               </li>
 
               <li>
-                Responsive Design
+                Responsive Webdesign
               </li>
 
               <li>
@@ -844,6 +1114,7 @@
 
             </a>
 
+
           </article>
 
 
@@ -853,6 +1124,7 @@
           <article
             class="package package--featured"
           >
+
 
             <div class="package__badge">
               BELIEBT
@@ -866,7 +1138,7 @@
               </p>
 
               <h3>
-                Kompletter Auftritt
+                Kompletter Webauftritt
               </h3>
 
             </div>
@@ -879,7 +1151,7 @@
               </li>
 
               <li>
-                SEO + professionelle Texte
+                SEO + professionelle Webtexte
               </li>
 
               <li>
@@ -907,6 +1179,7 @@
 
             </a>
 
+
           </article>
 
 
@@ -914,6 +1187,7 @@
           <!-- DIGITAL BUSINESS -->
 
           <article class="package">
+
 
             <div>
 
@@ -963,6 +1237,7 @@
 
             </a>
 
+
           </article>
 
 
@@ -985,8 +1260,8 @@
 
             <span>
 
-              Hosting, Updates
-              und kleine Änderungen
+              Hosting, Updates,
+              Wartung und kleine Änderungen
 
             </span>
 
@@ -1019,8 +1294,8 @@
 
             <span>
 
-              Laufende Entwicklung
-              und Growth Support
+              Laufende Entwicklung,
+              Optimierung und Growth Support
 
             </span>
 
@@ -1050,6 +1325,7 @@
 
         <div>
 
+
           <p class="eyebrow">
             SO ARBEITEN WIR
           </p>
@@ -1057,13 +1333,14 @@
 
           <h2>
 
-            Ein Ansprechpartner.
+            Von der Idee
 
             <br>
 
-            Der ganze Prozess.
+            bis zum digitalen Launch.
 
           </h2>
+
 
         </div>
 
@@ -1111,8 +1388,8 @@
 
               <p>
 
-                Struktur, Tonalität,
-                UX und visuelles System entwickeln.
+                Seitenstruktur, UX,
+                Tonalität und visuelles System entwickeln.
 
               </p>
 
@@ -1131,7 +1408,7 @@
             <div>
 
               <strong>
-                Build
+                Development
               </strong>
 
               <p>
@@ -1161,8 +1438,8 @@
 
               <p>
 
-                Veröffentlichen, messen,
-                optimieren und weiter betreuen.
+                Website oder App veröffentlichen,
+                messen, optimieren und weiter betreuen.
 
               </p>
 
@@ -1194,27 +1471,34 @@
 
         <div>
 
+
           <p class="eyebrow">
-            PROJEKT STARTEN
+
+            WEBAGENTUR KÖLN · PROJEKT STARTEN
+
           </p>
 
 
           <h2>
 
-            Erzähl uns,
-            was du bauen willst.
+            Lass uns dein
+
+            <br>
+
+            digitales Projekt starten.
 
           </h2>
 
 
           <p class="hero__lead">
 
-            Die Anfrage landet direkt
-            in Firestore.
+            Du planst eine neue Website,
+            eine App, bessere Google-Sichtbarkeit
+            oder einen kompletten digitalen Auftritt?
 
-            Nach erfolgreichem Versand
-            erhält der Interessent automatisch
-            eine Bestätigung per E-Mail.
+            Beschreib uns dein Projekt
+            und wir melden uns mit
+            den nächsten Schritten.
 
           </p>
 
@@ -1222,15 +1506,14 @@
           <div class="contact__note">
 
             <strong>
-              Automatisch:
+              Von der Idee bis zum Launch:
             </strong>
 
-            Anfrage speichern →
-            Bestätigung senden →
-            interne Benachrichtigung
-            an Intertwist.
+            Strategie · Design · Entwicklung ·
+            SEO · Content · Betreuung
 
           </div>
+
 
         </div>
 
@@ -1281,6 +1564,7 @@
                 name="name"
                 required
                 maxlength="120"
+                autocomplete="name"
                 placeholder="Vor- und Nachname"
               >
 
@@ -1297,6 +1581,7 @@
                 type="email"
                 required
                 maxlength="200"
+                autocomplete="email"
                 placeholder="name@firma.de"
               >
 
@@ -1317,14 +1602,13 @@
               <input
                 name="company"
                 maxlength="160"
+                autocomplete="organization"
                 placeholder="Optional"
               >
 
             </label>
 
 
-
-            <!-- BUDGET OHNE EURO-BETRÄGE -->
 
             <label>
 
@@ -1430,6 +1714,7 @@
 
           <label class="privacy">
 
+
             <input
               type="checkbox"
               name="privacy"
@@ -1450,6 +1735,7 @@
               zur Bearbeitung der Anfrage zu.
 
             </span>
+
 
           </label>
 
@@ -1497,19 +1783,23 @@
 
       <div>
 
+
         <img
           src="./assets/intertwist-logo.png"
-          alt="Intertwist"
+          alt="Intertwist Webagentur Köln"
         >
+
 
         <p>
 
-          Web · Apps · SEO ·
-          Copy · Design · Marketing
+          Webentwicklung · Apps · SEO ·
+          Copywriting · Design · Marketing
 
         </p>
 
+
       </div>
+
 
 
       <div>
@@ -1523,6 +1813,7 @@
         </a>
 
       </div>
+
 
 
       <div>
@@ -1550,7 +1841,7 @@
 
 
   <!-- =====================================================
-       PROJEKT KARUSSELL + HERO MOTION
+       MOTION / PROJEKT KARUSSELL
   ====================================================== -->
 
   <script
@@ -1561,7 +1852,7 @@
 
 
   <!-- =====================================================
-       FIREBASE / FORMULAR
+       FIREBASE / KONTAKTFORMULAR
   ====================================================== -->
 
   <script
