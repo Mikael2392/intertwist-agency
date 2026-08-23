@@ -2,11 +2,12 @@
 <html lang="de">
 
 <head>
+
   <meta charset="utf-8">
 
   <meta
     name="viewport"
-    content="width=device-width,initial-scale=1"
+    content="width=device-width, initial-scale=1"
   >
 
   <meta
@@ -19,9 +20,17 @@
     content="Intertwist – Webentwicklung, Apps, SEO, Copywriting, Design, Marketing und digitale Betreuung aus Köln."
   >
 
-  <title>Intertwist — Web, Apps, SEO, Design & Marketing</title>
+  <title>
+    Intertwist — Web, Apps, SEO, Design & Marketing
+  </title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- GOOGLE FONTS -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
 
   <link
     rel="preconnect"
@@ -34,190 +43,44 @@
     rel="stylesheet"
   >
 
+
+  <!-- HAUPT CSS -->
+
   <link
     rel="stylesheet"
     href="./styles.css"
   >
+
+
+  <!-- ANIMATIONEN DER WEBSITE -->
 
   <link
     rel="stylesheet"
     href="./motion.css"
   >
 
-  <style>
 
-    body.intro-lock {
-      overflow: hidden;
-    }
+  <!-- NEUER INTERTWIST SPLASH -->
 
-    .intro-overlay {
-      position: fixed;
-      inset: 0;
+  <link
+    rel="stylesheet"
+    href="./splash.css"
+  >
 
-      z-index: 9999;
-
-      display: grid;
-      place-items: center;
-
-      background: #050505;
-
-      transition:
-        opacity 0.9s ease,
-        visibility 0.9s ease;
-    }
-
-    .intro-overlay.is-done {
-      opacity: 0;
-      visibility: hidden;
-
-      pointer-events: none;
-    }
-
-    .intro-overlay__stage {
-      width: min(100%, 1400px);
-
-      padding: 24px;
-
-      display: flex;
-
-      justify-content: center;
-      align-items: center;
-    }
-
-    .intro-overlay__word {
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      flex-wrap: nowrap;
-
-      color: #ffffff;
-
-      font-family:
-        "Manrope",
-        "Inter",
-        sans-serif;
-
-      font-size:
-        clamp(
-          42px,
-          10vw,
-          150px
-        );
-
-      font-weight: 800;
-
-      line-height: 1;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.08em;
-
-      transition:
-        letter-spacing 1.2s ease,
-        transform 1.2s ease,
-        opacity 0.7s ease;
-    }
-
-    .intro-overlay__word.is-spread {
-      letter-spacing: 0.34em;
-
-      transform: scale(1.02);
-    }
-
-    .intro-overlay__word span {
-      display: inline-block;
-
-      opacity: 0;
-
-      transform:
-        translateY(22px)
-        scale(0.94);
-
-      filter: blur(8px);
-
-      transition:
-        opacity 0.55s ease,
-        transform 0.55s ease,
-        filter 0.55s ease;
-    }
-
-    .intro-overlay__word span.is-visible {
-      opacity: 1;
-
-      transform:
-        translateY(0)
-        scale(1);
-
-      filter: blur(0);
-    }
-
-    .intro-overlay.is-done
-    .intro-overlay__word {
-      opacity: 0;
-
-      transform: scale(1.04);
-    }
-
-    @media (max-width: 700px) {
-
-      .intro-overlay__word {
-        letter-spacing: 0.05em;
-      }
-
-      .intro-overlay__word.is-spread {
-        letter-spacing: 0.12em;
-      }
-
-    }
-
-  </style>
 </head>
 
 
-<body class="intro-lock">
+<body>
 
 
-  <!-- INTRO -->
-
-  <div
-    id="introOverlay"
-    class="intro-overlay"
-    aria-hidden="true"
-  >
-
-    <div class="intro-overlay__stage">
-
-      <div
-        id="introWord"
-        class="intro-overlay__word"
-        aria-label="INTERTWIST"
-      >
-
-        <span>I</span>
-        <span>N</span>
-        <span>T</span>
-        <span>E</span>
-        <span>R</span>
-        <span>T</span>
-        <span>W</span>
-        <span>I</span>
-        <span>S</span>
-        <span>T</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- NAVIGATION -->
+  <!-- =====================================================
+       NAVIGATION
+  ====================================================== -->
 
   <header class="nav">
 
     <div class="wrap nav__inner">
+
 
       <a
         class="brand"
@@ -265,16 +128,24 @@
   </header>
 
 
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
   <main id="top">
 
 
-    <!-- HERO -->
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
 
     <section class="hero section">
+
 
       <div
         class="hero__glow hero__glow--pink"
       ></div>
+
 
       <div
         class="hero__glow hero__glow--mint"
@@ -287,6 +158,7 @@
         <!-- LINKER BEREICH -->
 
         <div>
+
 
           <div class="kicker">
             DIGITAL STUDIO · KÖLN
@@ -321,6 +193,7 @@
 
           <div class="hero__actions">
 
+
             <a
               class="button button--acid"
               href="#contact"
@@ -336,24 +209,38 @@
               Pakete ansehen
             </a>
 
+
           </div>
 
 
           <div class="hero__proof">
 
-            <span>Web & App</span>
+            <span>
+              Web & App
+            </span>
 
-            <span>Firebase</span>
+            <span>
+              Firebase
+            </span>
 
-            <span>SEO</span>
+            <span>
+              SEO
+            </span>
 
-            <span>Copy</span>
+            <span>
+              Copy
+            </span>
 
-            <span>Branding</span>
+            <span>
+              Branding
+            </span>
 
-            <span>Marketing</span>
+            <span>
+              Marketing
+            </span>
 
           </div>
+
 
         </div>
 
@@ -361,6 +248,7 @@
         <!-- MIKAEL / PAULA -->
 
         <aside class="hero__card">
+
 
           <p class="eyebrow">
 
@@ -405,14 +293,18 @@
 
           </div>
 
+
         </aside>
+
 
       </div>
 
     </section>
 
 
-    <!-- GROSSES GELBES ENDLOS-LAUFBAND -->
+    <!-- ===================================================
+         GELBES LAUFBAND
+    ==================================================== -->
 
     <div
       class="marquee"
@@ -457,12 +349,15 @@
 
         </div>
 
+
       </div>
 
     </div>
 
 
-    <!-- LEISTUNGEN -->
+    <!-- ===================================================
+         LEISTUNGEN
+    ==================================================== -->
 
     <section
       id="services"
@@ -473,6 +368,7 @@
 
 
         <div class="section-head">
+
 
           <div>
 
@@ -503,6 +399,7 @@
 
           </p>
 
+
         </div>
 
 
@@ -514,6 +411,7 @@
           <article
             class="discipline discipline--dev"
           >
+
 
             <p class="eyebrow">
 
@@ -575,6 +473,7 @@
 
             </a>
 
+
           </article>
 
 
@@ -583,6 +482,7 @@
           <article
             class="discipline discipline--creative"
           >
+
 
             <p class="eyebrow">
 
@@ -644,7 +544,9 @@
 
             </a>
 
+
           </article>
+
 
         </div>
 
@@ -653,7 +555,9 @@
     </section>
 
 
-    <!-- PROOF OVER PROMISES -->
+    <!-- ===================================================
+         PROOF OVER PROMISES
+    ==================================================== -->
 
     <section
       id="work"
@@ -664,6 +568,7 @@
 
 
         <div class="section-head">
+
 
           <div>
 
@@ -677,7 +582,9 @@
             <h2>
 
               Proof over
+
               <br>
+
               promises.
 
             </h2>
@@ -695,8 +602,11 @@
 
           </p>
 
+
         </div>
 
+
+        <!-- PROJEKT KARUSSELL -->
 
         <div class="work-grid">
 
@@ -870,6 +780,7 @@
 
           </a>
 
+
         </div>
 
       </div>
@@ -877,7 +788,9 @@
     </section>
 
 
-    <!-- PAKETE -->
+    <!-- ===================================================
+         PAKETE
+    ==================================================== -->
 
     <section
       id="packages"
@@ -888,6 +801,7 @@
 
 
         <div class="section-head">
+
 
           <div>
 
@@ -916,6 +830,7 @@
             der Kunde ein konkretes Angebot.
 
           </p>
+
 
         </div>
 
@@ -946,15 +861,25 @@
 
             <ul>
 
-              <li>4–5 Seiten</li>
+              <li>
+                4–5 Seiten
+              </li>
 
-              <li>Responsive Design</li>
+              <li>
+                Responsive Design
+              </li>
 
-              <li>Kontaktformular</li>
+              <li>
+                Kontaktformular
+              </li>
 
-              <li>Basis-SEO</li>
+              <li>
+                Basis-SEO
+              </li>
 
-              <li>Deployment</li>
+              <li>
+                Deployment
+              </li>
 
             </ul>
 
@@ -964,9 +889,7 @@
               href="#contact"
               data-package="Starter — Business Website"
             >
-
               Starter anfragen
-
             </a>
 
           </article>
@@ -977,6 +900,7 @@
           <article
             class="package package--featured"
           >
+
 
             <div class="package__badge">
               BELIEBT
@@ -1030,10 +954,9 @@
               href="#contact"
               data-package="Business — Kompletter Auftritt"
             >
-
               Business anfragen
-
             </a>
+
 
           </article>
 
@@ -1041,6 +964,7 @@
           <!-- DIGITAL BUSINESS -->
 
           <article class="package">
+
 
             <div>
 
@@ -1089,17 +1013,17 @@
               href="#contact"
               data-package="Digital Business — Web-App / Plattform"
             >
-
               Premium anfragen
-
             </a>
 
+
           </article>
+
 
         </div>
 
 
-        <!-- MONATLICH -->
+        <!-- MONATLICHE BETREUUNG -->
 
         <div class="retainers">
 
@@ -1157,14 +1081,18 @@
 
           </article>
 
+
         </div>
+
 
       </div>
 
     </section>
 
 
-    <!-- PROZESS -->
+    <!-- ===================================================
+         PROZESS
+    ==================================================== -->
 
     <section
       id="team"
@@ -1284,14 +1212,18 @@
 
           </li>
 
+
         </ol>
+
 
       </div>
 
     </section>
 
 
-    <!-- KONTAKT -->
+    <!-- ===================================================
+         KONTAKT
+    ==================================================== -->
 
     <section
       id="contact"
@@ -1302,6 +1234,7 @@
 
 
         <div>
+
 
           <p class="eyebrow">
             PROJEKT STARTEN
@@ -1341,8 +1274,11 @@
 
           </div>
 
+
         </div>
 
+
+        <!-- FORMULAR -->
 
         <form
           id="inquiryForm"
@@ -1350,6 +1286,8 @@
           novalidate
         >
 
+
+          <!-- HONEYPOT -->
 
           <div
             class="hp"
@@ -1402,6 +1340,7 @@
 
             </label>
 
+
           </div>
 
 
@@ -1450,6 +1389,7 @@
               </select>
 
             </label>
+
 
           </div>
 
@@ -1523,14 +1463,13 @@
               required
             >
 
+
             <span>
 
               Ich habe die
 
               <a href="./datenschutz.html">
-
                 Datenschutzerklärung
-
               </a>
 
               gelesen und stimme der
@@ -1559,16 +1498,21 @@
             aria-live="polite"
           ></p>
 
+
         </form>
+
 
       </div>
 
     </section>
 
+
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
 
   <footer class="footer">
 
@@ -1611,158 +1555,25 @@
 
       </div>
 
+
     </div>
 
   </footer>
 
 
-  <!-- INTRO SCRIPT -->
+  <!-- =====================================================
+       NEUER SPLASH
+  ====================================================== -->
 
-  <script>
-
-    (function () {
-
-      const overlay =
-        document.getElementById(
-          "introOverlay"
-        );
-
-      const word =
-        document.getElementById(
-          "introWord"
-        );
+  <script
+    src="./splash.js"
+    defer
+  ></script>
 
 
-      if (!overlay || !word) {
-
-        document.body
-          .classList
-          .remove(
-            "intro-lock"
-          );
-
-        return;
-
-      }
-
-
-      const letters =
-        Array.from(
-          word.querySelectorAll(
-            "span"
-          )
-        );
-
-
-      const revealSteps = [
-
-        [0, 9],
-
-        [1, 8],
-
-        [2, 7],
-
-        [3, 6],
-
-        [4, 5]
-
-      ];
-
-
-      revealSteps.forEach(
-        (pair, stepIndex) => {
-
-          setTimeout(
-            () => {
-
-              pair.forEach(
-                letterIndex => {
-
-                  if (
-                    letters[
-                      letterIndex
-                    ]
-                  ) {
-
-                    letters[
-                      letterIndex
-                    ]
-                    .classList
-                    .add(
-                      "is-visible"
-                    );
-
-                  }
-
-                }
-              );
-
-            },
-
-            140 +
-            stepIndex * 170
-
-          );
-
-        }
-      );
-
-
-      setTimeout(
-        () => {
-
-          word
-            .classList
-            .add(
-              "is-spread"
-            );
-
-        },
-
-        1180
-
-      );
-
-
-      setTimeout(
-        () => {
-
-          overlay
-            .classList
-            .add(
-              "is-done"
-            );
-
-        },
-
-        2350
-
-      );
-
-
-      setTimeout(
-        () => {
-
-          document.body
-            .classList
-            .remove(
-              "intro-lock"
-            );
-
-          overlay.remove();
-
-        },
-
-        3300
-
-      );
-
-    })();
-
-  </script>
-
-
-  <!-- MOTION -->
+  <!-- =====================================================
+       PROJEKT KARUSSELL + HERO MOTION
+  ====================================================== -->
 
   <script
     src="./motion.js"
@@ -1770,7 +1581,9 @@
   ></script>
 
 
-  <!-- FIREBASE / FORM -->
+  <!-- =====================================================
+       FIREBASE / KONTAKTFORMULAR
+  ====================================================== -->
 
   <script
     type="module"
@@ -1779,4 +1592,5 @@
 
 
 </body>
+
 </html>
