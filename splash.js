@@ -2,11 +2,15 @@
    INTERTWIST CINEMATIC SPLASH
 ========================================================= */
 
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
 
-    /* Seite während Splash sperren */
+
+    /* =====================================================
+       SCROLLEN WÄHREND SPLASH SPERREN
+    ===================================================== */
 
     document
       .documentElement
@@ -37,7 +41,19 @@ document.addEventListener(
 
 
     splash.innerHTML = `
+
       <div class="intertwist-splash__brand">
+
+
+        <!--
+          ORIGINAL INFINITY SYMBOL
+
+          Es wird das komplette originale
+          Logo geladen.
+
+          CSS zeigt davon aber NUR
+          den linken Infinity-Bereich.
+        -->
 
         <div class="intertwist-splash__symbol">
 
@@ -49,11 +65,26 @@ document.addEventListener(
         </div>
 
 
+
+        <!--
+          NEUER TEXT
+        -->
+
         <div class="intertwist-splash__name">
 
-          <span class="intertwist-splash__inter">
+
+          <!-- INTER bleibt ruhig -->
+
+          <span
+            class="intertwist-splash__inter"
+          >
             Inter
           </span>
+
+
+          <!--
+            NUR TWIST wird animiert
+          -->
 
           <span
             id="intertwistCasinoWord"
@@ -62,41 +93,69 @@ document.addEventListener(
             twist
           </span>
 
+
         </div>
 
+
       </div>
+
     `;
 
 
-    document.body.appendChild(
-      splash
-    );
-
-
-    /* =====================================================
-       TWIST
-    ===================================================== */
-
-    const twist =
-      document.getElementById(
-        "intertwistCasinoWord"
+    document
+      .body
+      .appendChild(
+        splash
       );
 
 
+    /* =====================================================
+       TWIST ELEMENT
+    ===================================================== */
+
+    const twist =
+      document
+        .getElementById(
+          "intertwistCasinoWord"
+        );
+
+
     if (!twist) {
+
+      document
+        .documentElement
+        .classList
+        .remove(
+          "intertwist-splash-lock"
+        );
+
       return;
+
     }
 
 
     /* =====================================================
-       RANDOM BUCHSTABEN
+       CASINO ZEICHEN
     ===================================================== */
 
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 
-    const colors = [
+    /*
+      Zielwort.
+    */
+
+    const finalWord =
+      "twist";
+
+
+    /*
+      Farben gelten NUR
+      für den animierten twist-Teil.
+    */
+
+    const casinoColors = [
 
       "#eaff00",
 
@@ -106,13 +165,15 @@ document.addEventListener(
 
       "#dfff3f",
 
-      "#eaff00"
+      "#eaff00",
+
+      "#f4ff85"
 
     ];
 
 
     /* =====================================================
-       ZEITEN
+       ZEIT
     ===================================================== */
 
     const startTime =
@@ -120,11 +181,8 @@ document.addEventListener(
 
 
     /*
-      Die Casino-Buchstaben laufen
-      lange, aber SEHR schnell.
-
-      Dadurch kann man die einzelnen
-      Zufallswörter nicht lesen.
+      Random-Buchstaben laufen
+      6,2 Sekunden.
     */
 
     const casinoDuration =
@@ -132,14 +190,16 @@ document.addEventListener(
 
 
     /*
-      Alle 55 Millisekunden
-      neue Buchstaben.
+      Alle 48 Millisekunden
+      neues Wort.
 
-      Vorher waren es ca. 180 ms.
+      Sehr schnell:
+      Man kann die Random-Wörter
+      praktisch nicht lesen.
     */
 
     const changeEvery =
-      55;
+      48;
 
 
     let lastChange =
@@ -147,15 +207,18 @@ document.addEventListener(
 
 
     /* =====================================================
-       ZUFÄLLIGER BUCHSTABE
+       RANDOM BUCHSTABE
     ===================================================== */
 
     function randomCharacter() {
 
       const index =
         Math.floor(
+
           Math.random() *
+
           characters.length
+
         );
 
 
@@ -168,34 +231,34 @@ document.addEventListener(
 
 
     /* =====================================================
-       5 RANDOM BUCHSTABEN
+       RANDOM 5-BUCHSTABEN-WORT
     ===================================================== */
 
     function randomWord() {
 
-      let word =
+      let result =
         "";
 
 
       for (
         let i = 0;
-        i < 5;
+        i < finalWord.length;
         i++
       ) {
 
-        word +=
+        result +=
           randomCharacter();
 
       }
 
 
-      return word;
+      return result;
 
     }
 
 
     /* =====================================================
-       CASINO ANIMATION
+       TWIST ANIMATION
     ===================================================== */
 
     function animateTwist(
@@ -208,8 +271,7 @@ document.addEventListener(
 
 
       /*
-        Alle 55ms komplett
-        neues Zufallswort
+        Nur alle 48ms ändern.
       */
 
       if (
@@ -222,26 +284,30 @@ document.addEventListener(
           time;
 
 
+        /* neues Random Wort */
+
         twist.textContent =
           randomWord();
 
 
-        /* sehr kleine Rotation */
-
-        const rotateY =
-          (
-            Math.random() *
-            8
-          ) -
-          4;
-
+        /* =================================================
+           KLEINE 3D DREHUNG
+        ================================================= */
 
         const rotateX =
           (
             Math.random() *
-            5
+            6
           ) -
-          2.5;
+          3;
+
+
+        const rotateY =
+          (
+            Math.random() *
+            12
+          ) -
+          6;
 
 
         const rotateZ =
@@ -263,21 +329,40 @@ document.addEventListener(
         twist.style.transform =
           `
             perspective(900px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            rotateZ(${rotateZ}deg)
-            scale(${scale})
+
+            rotateX(
+              ${rotateX}deg
+            )
+
+            rotateY(
+              ${rotateY}deg
+            )
+
+            rotateZ(
+              ${rotateZ}deg
+            )
+
+            scale(
+              ${scale}
+            )
           `;
 
 
-        /* Casino-Farbe */
+        /* =================================================
+           CASINO FARBE
+        ================================================= */
 
         const color =
-          colors[
+          casinoColors[
+
             Math.floor(
+
               Math.random() *
-              colors.length
+
+              casinoColors.length
+
             )
+
           ];
 
 
@@ -285,19 +370,30 @@ document.addEventListener(
           color;
 
 
+        /* =================================================
+           GLOW
+        ================================================= */
+
         twist.style.filter =
           `
+
             drop-shadow(
-              0 0 17px
+              0 0 9px
               ${color}
             )
+
+            drop-shadow(
+              0 0 20px
+              ${color}
+            )
+
           `;
 
       }
 
 
       /* =================================================
-         RANDOM WEITERLAUFEN
+         WEITER ANIMIEREN
       ================================================= */
 
       if (
@@ -313,21 +409,21 @@ document.addEventListener(
 
 
       /* =================================================
-         STOPP → SOFORT TWIST
+         FINALE
       ================================================= */
 
       else {
 
         /*
-          Keine einzelnen Buchstaben
-          nacheinander.
+          Random hört SOFORT auf.
 
-          Das ganze Wort rastet
-          gleichzeitig auf TWIST ein.
+          Jetzt erscheint sauber:
+
+          twist
         */
 
         twist.textContent =
-          "twist";
+          finalWord;
 
 
         twist.style.color =
@@ -342,9 +438,11 @@ document.addEventListener(
           "";
 
 
-        twist.classList.add(
-          "is-finished"
-        );
+        twist
+          .classList
+          .add(
+            "is-finished"
+          );
 
       }
 
@@ -357,26 +455,30 @@ document.addEventListener(
 
 
     /* =====================================================
-       SPLASH BLEIBT RUHIG STEHEN
+       ZEITPLAN
     ===================================================== */
 
     /*
-      6,2 Sekunden Casino
+      0 – 6.2 Sek:
+      Casino + Wachstum
 
-      danach fast 3 Sekunden
-      fertiges:
+      6.2 – 9 Sek:
+      fertiges Logo ruhig sichtbar
 
-      ∞ Intertwist
+      9 Sek:
+      Splash blendet aus
 
-      ruhig sichtbar.
+      10.4 Sek:
+      Splash wird entfernt
     */
+
 
     const leaveTime =
       9000;
 
 
     const removeTime =
-      10350;
+      10400;
 
 
     /* =====================================================
@@ -399,7 +501,7 @@ document.addEventListener(
 
 
     /* =====================================================
-       ENTFERNEN → WEBSITE
+       SPLASH ENTFERNEN
     ===================================================== */
 
     setTimeout(
@@ -416,7 +518,8 @@ document.addEventListener(
           );
 
 
-        document.body
+        document
+          .body
           .classList
           .remove(
             "intro-lock"
@@ -426,6 +529,7 @@ document.addEventListener(
 
       removeTime
     );
+
 
   }
 );
