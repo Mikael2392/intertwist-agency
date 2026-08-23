@@ -2,6 +2,7 @@
 <html lang="de">
 
 <head>
+
   <meta charset="utf-8">
 
   <meta
@@ -13,6 +14,7 @@
     name="theme-color"
     content="#070707"
   >
+
 
   <!-- =====================================================
        SEO
@@ -126,7 +128,7 @@
 
 
   <!-- =====================================================
-       FONTS
+       GOOGLE FONTS
   ====================================================== -->
 
   <link
@@ -164,6 +166,88 @@
     rel="stylesheet"
     href="./splash.css"
   >
+
+
+  <!-- =====================================================
+       HERO TITEL
+  ====================================================== -->
+
+  <style>
+
+    .hero__title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+
+    .hero__title-top {
+      display: block;
+
+      background: none !important;
+
+      -webkit-background-clip: initial !important;
+      background-clip: initial !important;
+
+      color: #ffffff !important;
+    }
+
+
+    .hero__title-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      margin-top: 24px;
+
+      background: none !important;
+
+      -webkit-background-clip: initial !important;
+      background-clip: initial !important;
+
+      color: #ffffff !important;
+    }
+
+
+    .hero__title-for {
+      display: block;
+
+      background: none !important;
+
+      -webkit-background-clip: initial !important;
+      background-clip: initial !important;
+
+      color: #ffffff !important;
+    }
+
+
+    .hero__title-highlight {
+      display: block;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--acid),
+          var(--peach),
+          var(--pink)
+        ) !important;
+
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+
+      color: transparent !important;
+    }
+
+
+    @media (max-width: 620px) {
+
+      .hero__title-bottom {
+        margin-top: 16px;
+      }
+
+    }
+
+  </style>
 
 
   <!-- =====================================================
@@ -275,7 +359,7 @@
 
 
   <!-- =====================================================
-       GOOGLE ANALYTICS / CONSENT
+       GOOGLE ANALYTICS
   ====================================================== -->
 
   <script
@@ -287,6 +371,7 @@
 
 
 <body>
+
 
   <!-- =====================================================
        NAVIGATION
@@ -370,6 +455,9 @@
 
       <div class="wrap hero__grid">
 
+
+        <!-- HERO LINKS -->
+
         <div>
 
           <div class="kicker">
@@ -377,12 +465,23 @@
           </div>
 
 
-          <h1>
+          <h1 class="hero__title">
 
-            Webagentur Köln für
+            <span class="hero__title-top">
+              Webagentur
+            </span>
 
-            <span>
-              Websites, Apps & SEO
+
+            <span class="hero__title-bottom">
+
+              <span class="hero__title-for">
+                für
+              </span>
+
+              <span class="hero__title-highlight">
+                Websites, Apps & SEO
+              </span>
+
             </span>
 
           </h1>
@@ -463,6 +562,8 @@
 
         </div>
 
+
+        <!-- HERO RECHTS -->
 
         <aside class="hero__card">
 
@@ -553,7 +654,7 @@
 
 
     <!-- =====================================================
-         SERVICES
+         LEISTUNGEN
     ====================================================== -->
 
     <section
@@ -1005,7 +1106,7 @@
 
 
     <!-- =====================================================
-         ABOUT INTERTWIST
+         INTERTWIST
     ====================================================== -->
 
     <section
@@ -1048,12 +1149,14 @@
             </p>
 
             <p>
+
               <a
                 class="button button--ghost"
                 href="#contact"
               >
                 Mehr über uns →
               </a>
+
             </p>
 
           </div>
@@ -1066,7 +1169,7 @@
 
 
     <!-- =====================================================
-         CONTACT
+         KONTAKT
     ====================================================== -->
 
     <section
@@ -1075,6 +1178,7 @@
     >
 
       <div class="wrap contact__grid">
+
 
         <div>
 
@@ -1115,7 +1219,7 @@
 
 
         <!-- =================================================
-             KONTAKTFORMULAR
+             FORMULAR
         ================================================== -->
 
         <form
@@ -1123,6 +1227,7 @@
           class="form"
           novalidate
         >
+
 
           <!-- HONEYPOT -->
 
@@ -1147,6 +1252,7 @@
 
 
           <div class="form__2">
+
 
             <label>
 
@@ -1178,10 +1284,12 @@
 
             </label>
 
+
           </div>
 
 
           <div class="form__2">
+
 
             <label>
 
@@ -1230,6 +1338,7 @@
               </select>
 
             </label>
+
 
           </div>
 
@@ -1336,11 +1445,13 @@
             aria-live="polite"
           ></p>
 
+
         </form>
 
       </div>
 
     </section>
+
 
   </main>
 
@@ -1352,6 +1463,7 @@
   <footer class="footer">
 
     <div class="wrap footer__grid">
+
 
       <div>
 
@@ -1387,6 +1499,7 @@
         © 2026 Intertwist · Köln
       </div>
 
+
     </div>
 
   </footer>
@@ -1420,6 +1533,7 @@
     type="module"
     src="./app.js"
   ></script>
+
 
 </body>
 
