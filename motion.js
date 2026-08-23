@@ -1,99 +1,131 @@
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       PROJEKT-BILDER
-    ===================================================== */
+  /* =====================================================
+     PROJEKT-BILDER
+  ===================================================== */
 
-    function applyProjectImages() {
+  function applyProjectImages() {
 
-      const cards =
-        document.querySelectorAll(
-          "#work .work"
+    const cards =
+      document.querySelectorAll("#work .work");
+
+    cards.forEach(card => {
+
+      const title =
+        card
+          .querySelector("h3")
+          ?.textContent
+          ?.trim();
+
+      let imageUrl = "";
+
+
+      if (title === "Sole Mio Apartments") {
+
+        imageUrl =
+          "https://image.thum.io/get/width/1200/crop/850/noanimate/https://solemio-apartments.com/";
+
+      }
+
+
+      if (title === "MeetKoch") {
+
+        imageUrl =
+          "https://image.thum.io/get/width/1200/crop/850/noanimate/https://github.com/Mikael2392/meetkoch";
+
+      }
+
+
+      if (title === "Wortschmiede") {
+
+        imageUrl =
+          "https://image.thum.io/get/width/1200/crop/850/noanimate/https://paula-smiri.lovable.app/";
+
+      }
+
+
+      if (title === "Garage Portfolio") {
+
+        imageUrl =
+          "https://image.thum.io/get/width/1200/crop/850/noanimate/https://mikael-garage-portfolio.netlify.app/";
+
+      }
+
+
+      if (title === "Developer / DevOps") {
+
+        imageUrl =
+          "https://image.thum.io/get/width/1200/crop/850/noanimate/https://bugshunterms.netlify.app/";
+
+      }
+
+
+      if (imageUrl) {
+
+        card.style.setProperty(
+          "--project-image",
+          `url("${imageUrl}")`
+        );
+
+      }
+
+    });
+
+  }
+
+
+  applyProjectImages();
+
+
+
+  /* =====================================================
+     PROJEKT KARUSSELL
+  ===================================================== */
+
+  const workGrid =
+    document.querySelector("#work .work-grid");
+
+
+  if (workGrid) {
+
+    const originalCards =
+      Array.from(workGrid.children);
+
+
+
+    /* =================================================
+       KARTEN KOPIEREN
+       Für endloses Karussell
+    ================================================= */
+
+    if (!workGrid.dataset.loopReady) {
+
+      originalCards.forEach(card => {
+
+        const clone =
+          card.cloneNode(true);
+
+
+        clone.setAttribute(
+          "aria-hidden",
+          "true"
         );
 
 
-      cards.forEach(
-        card => {
+        if (clone.matches("a")) {
 
-          const title =
-            card
-              .querySelector("h3")
-              ?.textContent
-              ?.trim();
-
-
-          let imageUrl =
-            "";
-
-
-          if (
-            title ===
-            "Sole Mio Apartments"
-          ) {
-
-            imageUrl =
-              "https://image.thum.io/get/width/1200/crop/850/noanimate/https://solemio-apartments.com/";
-
-          }
-
-
-          if (
-            title ===
-            "MeetKoch"
-          ) {
-
-            imageUrl =
-              "https://image.thum.io/get/width/1200/crop/850/noanimate/https://github.com/Mikael2392/meetkoch";
-
-          }
-
-
-          if (
-            title ===
-            "Wortschmiede"
-          ) {
-
-            imageUrl =
-              "https://image.thum.io/get/width/1200/crop/850/noanimate/https://paula-smiri.lovable.app/";
-
-          }
-
-
-          if (
-            title ===
-            "Garage Portfolio"
-          ) {
-
-            imageUrl =
-              "https://image.thum.io/get/width/1200/crop/850/noanimate/https://mikael-garage-portfolio.netlify.app/";
-
-          }
-
-
-          if (
-            title ===
-            "Developer / DevOps"
-          ) {
-
-            imageUrl =
-              "https://image.thum.io/get/width/1200/crop/850/noanimate/https://bugshunterms.netlify.app/";
-
-          }
-
-
-          if (imageUrl) {
-
-            card.style.setProperty(
-              "--project-image",
-              `url("${imageUrl}")`
-            );
-
-          }
+          clone.tabIndex = -1;
 
         }
-      );
+
+
+        workGrid.appendChild(clone);
+
+      });
+
+
+      workGrid.dataset.loopReady =
+        "true";
 
     }
 
@@ -101,177 +133,246 @@ document.addEventListener(
     applyProjectImages();
 
 
-    /* =====================================================
-       PROJEKT KARUSSELL
-    ===================================================== */
 
-    const workGrid =
-      document.querySelector(
-        "#work .work-grid"
-      );
+    /* =================================================
+       VARIABLEN
+    ================================================= */
+
+    let position = 0;
+
+    let loopWidth = 0;
+
+    let pointerIsDown = false;
+
+    let isDragging = false;
+
+    let isHovering = false;
+
+    let pointerStartX = 0;
+
+    let positionStart = 0;
+
+    let lastPointerX = 0;
+
+    let velocity = 0;
+
+    let resumeTime = 0;
+
+    let activePointerId = null;
+
+    let suppressClick = false;
 
 
-    if (workGrid) {
+    const automaticSpeed = 0.42;
 
-      const originalCards =
-        Array.from(
-          workGrid.children
+    const dragThreshold = 7;
+
+
+
+    /* =================================================
+       TOUCH
+    ================================================= */
+
+    workGrid.style.touchAction =
+      "pan-y";
+
+
+
+    /* =================================================
+       BREITE EINER KOMPLETTEN RUNDE
+    ================================================= */
+
+    function calculateLoopWidth() {
+
+      const styles =
+        getComputedStyle(workGrid);
+
+
+      const gap =
+        parseFloat(
+          styles.gap ||
+          styles.columnGap ||
+          "0"
         );
 
 
-      /* =================================================
-         KARTEN KOPIEREN
-         Damit links/rechts endlos funktioniert
-      ================================================= */
+      loopWidth = 0;
 
-      if (
-        !workGrid.dataset.loopReady
+
+      originalCards.forEach(card => {
+
+        loopWidth +=
+          card
+            .getBoundingClientRect()
+            .width;
+
+        loopWidth += gap;
+
+      });
+
+    }
+
+
+    requestAnimationFrame(
+      calculateLoopWidth
+    );
+
+
+    setTimeout(
+      calculateLoopWidth,
+      400
+    );
+
+
+
+    /* =================================================
+       ENDLOS-POSITION
+    ================================================= */
+
+    function normalizePosition() {
+
+      if (loopWidth <= 0) {
+        return;
+      }
+
+
+      while (
+        position <= -loopWidth
       ) {
 
-        originalCards.forEach(
-          card => {
-
-            const clone =
-              card.cloneNode(true);
-
-
-            clone.setAttribute(
-              "aria-hidden",
-              "true"
-            );
-
-
-            if (
-              clone.matches("a")
-            ) {
-
-              clone.tabIndex =
-                -1;
-
-            }
-
-
-            workGrid.appendChild(
-              clone
-            );
-
-          }
-        );
-
-
-        workGrid.dataset.loopReady =
-          "true";
+        position += loopWidth;
 
       }
 
 
-      applyProjectImages();
+      while (
+        position > 0
+      ) {
 
-
-      /* =================================================
-         VARIABLEN
-      ================================================= */
-
-      let position =
-        0;
-
-
-      let loopWidth =
-        0;
-
-
-      let isDragging =
-        false;
-
-
-      let isHovering =
-        false;
-
-
-      let pointerStartX =
-        0;
-
-
-      let positionStart =
-        0;
-
-
-      let lastPointerX =
-        0;
-
-
-      let velocity =
-        0;
-
-
-      let resumeTime =
-        0;
-
-
-      const automaticSpeed =
-        0.42;
-
-
-      /* =================================================
-         BREITE EINER KOMPLETTEN RUNDE
-      ================================================= */
-
-      function calculateLoopWidth() {
-
-        const styles =
-          getComputedStyle(
-            workGrid
-          );
-
-
-        const gap =
-          parseFloat(
-            styles.gap ||
-            styles.columnGap ||
-            "0"
-          );
-
-
-        loopWidth =
-          0;
-
-
-        originalCards.forEach(
-          card => {
-
-            loopWidth +=
-              card
-                .getBoundingClientRect()
-                .width;
-
-            loopWidth +=
-              gap;
-
-          }
-        );
+        position -= loopWidth;
 
       }
+
+    }
+
+
+
+    /* =================================================
+       HAUPTANIMATION
+    ================================================= */
+
+    function animate() {
+
+      const now =
+        performance.now();
+
+
+      /*
+        Automatisch bewegen,
+        solange niemand zieht
+        oder mit Maus darüber ist.
+      */
+
+      if (
+        !pointerIsDown &&
+        !isDragging &&
+        !isHovering &&
+        now > resumeTime
+      ) {
+
+        position -=
+          automaticSpeed;
+
+      }
+
+
+      /*
+        Nachrollen nach Drag
+      */
+
+      if (
+        !pointerIsDown &&
+        !isDragging &&
+        Math.abs(velocity) > 0.05
+      ) {
+
+        position += velocity;
+
+        velocity *= 0.93;
+
+      }
+
+
+      normalizePosition();
+
+
+      workGrid.style.transform =
+        `translate3d(${position}px, 0, 0)`;
 
 
       requestAnimationFrame(
-        calculateLoopWidth
+        animate
       );
 
-
-      setTimeout(
-        calculateLoopWidth,
-        400
-      );
+    }
 
 
-      /* =================================================
-         ENDLOS POSITION KORRIGIEREN
-      ================================================= */
+    requestAnimationFrame(
+      animate
+    );
 
-      function normalizePosition() {
+
+
+    /* =================================================
+       MAUS DRAUF = KARUSSELL STOPP
+    ================================================= */
+
+    workGrid.addEventListener(
+      "mouseenter",
+      () => {
+
+        isHovering = true;
+
+      }
+    );
+
+
+    workGrid.addEventListener(
+      "mouseleave",
+      () => {
 
         if (
-          loopWidth <= 0
+          !pointerIsDown &&
+          !isDragging
+        ) {
+
+          isHovering = false;
+
+          resumeTime =
+            performance.now() + 700;
+
+        }
+
+      }
+    );
+
+
+
+    /* =================================================
+       POINTER DOWN
+    ================================================= */
+
+    workGrid.addEventListener(
+      "pointerdown",
+      event => {
+
+        /*
+          Nur linke Maustaste.
+        */
+
+        if (
+          event.pointerType === "mouse" &&
+          event.button !== 0
         ) {
 
           return;
@@ -279,166 +380,82 @@ document.addEventListener(
         }
 
 
-        while (
-          position <=
-          -loopWidth
-        ) {
+        pointerIsDown = true;
 
-          position +=
-            loopWidth;
+        isDragging = false;
 
-        }
+        suppressClick = false;
 
+        isHovering = true;
 
-        while (
-          position > 0
-        ) {
-
-          position -=
-            loopWidth;
-
-        }
-
-      }
+        velocity = 0;
 
 
-      /* =================================================
-         HAUPT-ANIMATION
-      ================================================= */
+        pointerStartX =
+          event.clientX;
 
-      function animate() {
 
-        const now =
-          performance.now();
+        lastPointerX =
+          event.clientX;
+
+
+        positionStart =
+          position;
+
+
+        activePointerId =
+          event.pointerId;
 
 
         /*
-          Automatisch laufen:
+          WICHTIG:
 
-          - nicht beim Ziehen
-          - nicht beim Hover
-          - erst nach kurzer Pause
+          Hier KEIN setPointerCapture().
+
+          Dadurch kann ein normaler Klick
+          weiterhin auf dem <a>-Link landen.
         */
-
-        if (
-          !isDragging &&
-          !isHovering &&
-          now > resumeTime
-        ) {
-
-          position -=
-            automaticSpeed;
-
-        }
-
-
-        /*
-          kleines Nachrollen
-          nach dem Ziehen
-        */
-
-        if (
-          !isDragging &&
-          Math.abs(velocity) >
-          0.05
-        ) {
-
-          position +=
-            velocity;
-
-
-          velocity *=
-            0.93;
-
-        }
-
-
-        normalizePosition();
-
-
-        workGrid.style.transform =
-          `translate3d(${position}px, 0, 0)`;
-
-
-        requestAnimationFrame(
-          animate
-        );
 
       }
+    );
 
 
-      requestAnimationFrame(
-        animate
-      );
 
+    /* =================================================
+       POINTER MOVE
+    ================================================= */
 
-      /* =================================================
-         MAUS DRAUF = STOPP
-      ================================================= */
+    workGrid.addEventListener(
+      "pointermove",
+      event => {
 
-      workGrid.addEventListener(
-        "mouseenter",
-        () => {
-
-          isHovering =
-            true;
-
+        if (!pointerIsDown) {
+          return;
         }
-      );
 
 
-      workGrid.addEventListener(
-        "mouseleave",
-        () => {
-
-          if (
-            !isDragging
-          ) {
-
-            isHovering =
-              false;
+        const difference =
+          event.clientX -
+          pointerStartX;
 
 
-            resumeTime =
-              performance.now() +
-              700;
-
-          }
-
-        }
-      );
+        const distance =
+          Math.abs(difference);
 
 
-      /* =================================================
-         MAUS / TOUCH DRAG START
-      ================================================= */
 
-      workGrid.addEventListener(
-        "pointerdown",
-        event => {
+        /* =================================================
+           ERST AB 7px IST ES EIN DRAG
+        ================================================= */
 
-          isDragging =
-            true;
+        if (
+          distance > dragThreshold &&
+          !isDragging
+        ) {
 
+          isDragging = true;
 
-          isHovering =
-            true;
-
-
-          velocity =
-            0;
-
-
-          pointerStartX =
-            event.clientX;
-
-
-          lastPointerX =
-            event.clientX;
-
-
-          positionStart =
-            position;
+          suppressClick = true;
 
 
           workGrid.classList.add(
@@ -446,106 +463,14 @@ document.addEventListener(
           );
 
 
-          workGrid.setPointerCapture(
-            event.pointerId
-          );
-
-        }
-      );
-
-
-      /* =================================================
-         ZIEHEN NACH LINKS / RECHTS
-      ================================================= */
-
-      workGrid.addEventListener(
-        "pointermove",
-        event => {
-
-          if (
-            !isDragging
-          ) {
-
-            return;
-
-          }
-
-
-          const difference =
-            event.clientX -
-            pointerStartX;
-
-
-          position =
-            positionStart +
-            difference;
-
-
           /*
-            Geschwindigkeit merken,
-            damit es nach dem Loslassen
-            etwas nachrollt.
+            Pointer Capture erst JETZT,
+            wenn wirklich gezogen wird.
           */
-
-          const movement =
-            event.clientX -
-            lastPointerX;
-
-
-          velocity =
-            movement *
-            0.75;
-
-
-          lastPointerX =
-            event.clientX;
-
-
-          normalizePosition();
-
-        }
-      );
-
-
-      /* =================================================
-         LOSLASSEN
-      ================================================= */
-
-      function finishDrag(
-        event
-      ) {
-
-        if (
-          !isDragging
-        ) {
-
-          return;
-
-        }
-
-
-        isDragging =
-          false;
-
-
-        workGrid.classList.remove(
-          "is-dragging"
-        );
-
-
-        resumeTime =
-          performance.now() +
-          1200;
-
-
-        if (
-          event.pointerId !==
-          undefined
-        ) {
 
           try {
 
-            workGrid.releasePointerCapture(
+            workGrid.setPointerCapture(
               event.pointerId
             );
 
@@ -559,189 +484,312 @@ document.addEventListener(
 
         }
 
+
+
+        /* =================================================
+           WIRKLICH ZIEHEN
+        ================================================= */
+
+        if (!isDragging) {
+          return;
+        }
+
+
+        position =
+          positionStart +
+          difference;
+
+
+        const movement =
+          event.clientX -
+          lastPointerX;
+
+
+        velocity =
+          movement * 0.75;
+
+
+        lastPointerX =
+          event.clientX;
+
+
+        normalizePosition();
+
+      }
+    );
+
+
+
+    /* =================================================
+       DRAG / CLICK ENDE
+    ================================================= */
+
+    function finishPointer(event) {
+
+      if (!pointerIsDown) {
+        return;
       }
 
 
-      workGrid.addEventListener(
-        "pointerup",
-        finishDrag
+      const wasDragging =
+        isDragging;
+
+
+      pointerIsDown =
+        false;
+
+
+      isDragging =
+        false;
+
+
+      workGrid.classList.remove(
+        "is-dragging"
       );
 
 
-      workGrid.addEventListener(
-        "pointercancel",
-        finishDrag
-      );
+      resumeTime =
+        performance.now() + 1200;
 
 
-      /* =================================================
-         VERHINDERT LINK-ÖFFNEN,
-         WENN MAN NUR GEZOGEN HAT
-      ================================================= */
+      if (
+        wasDragging &&
+        activePointerId !== null
+      ) {
 
-      let dragDistance =
-        0;
-
-
-      workGrid.addEventListener(
-        "pointerdown",
-        () => {
-
-          dragDistance =
-            0;
-
-        }
-      );
-
-
-      workGrid.addEventListener(
-        "pointermove",
-        event => {
+        try {
 
           if (
-            isDragging
+            workGrid.hasPointerCapture(
+              activePointerId
+            )
           ) {
 
-            dragDistance +=
-              Math.abs(
-                event.movementX || 0
-              );
-
-          }
-
-        }
-      );
-
-
-      workGrid.addEventListener(
-        "click",
-        event => {
-
-          if (
-            dragDistance >
-            10
-          ) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-          }
-
-        },
-        true
-      );
-
-
-      /* =================================================
-         FENSTERGRÖSSE
-      ================================================= */
-
-      let resizeTimer;
-
-
-      window.addEventListener(
-        "resize",
-        () => {
-
-          clearTimeout(
-            resizeTimer
-          );
-
-
-          resizeTimer =
-            setTimeout(
-              calculateLoopWidth,
-              150
+            workGrid.releasePointerCapture(
+              activePointerId
             );
 
+          }
+
         }
-      );
+
+        catch (error) {
+
+          /* nichts */
+
+        }
+
+      }
+
+
+      activePointerId =
+        null;
+
+
+      /*
+        Wenn es nur ein normaler Klick war,
+        keine Geschwindigkeit nachlaufen lassen.
+      */
+
+      if (!wasDragging) {
+
+        velocity = 0;
+
+      }
 
     }
 
 
-    /* =====================================================
-       HERO MIKAEL / PAULA MAUSBEWEGUNG
-    ===================================================== */
-
-    const hero =
-      document.querySelector(
-        ".hero"
-      );
+    workGrid.addEventListener(
+      "pointerup",
+      finishPointer
+    );
 
 
-    const heroCard =
-      document.querySelector(
-        ".hero__card"
-      );
+    workGrid.addEventListener(
+      "pointercancel",
+      finishPointer
+    );
 
 
-    if (
-      hero &&
-      heroCard
-    ) {
 
-      hero.addEventListener(
-        "mousemove",
-        event => {
+    /* =================================================
+       LINKS
 
-          const rect =
-            hero.getBoundingClientRect();
+       NORMALER KLICK:
+       Projekt öffnet.
 
+       NACH DRAG:
+       Link wird NICHT geöffnet.
+    ================================================= */
 
-          const mouseX =
-            (
-              event.clientX -
-              rect.left
-            ) /
-            rect.width;
+    workGrid.addEventListener(
+      "click",
+      event => {
 
+        if (suppressClick) {
 
-          const mouseY =
-            (
-              event.clientY -
-              rect.top
-            ) /
-            rect.height;
+          event.preventDefault();
 
+          event.stopPropagation();
 
-          const rotateY =
-            (
-              mouseX -
-              0.5
-            ) * 6;
+          suppressClick = false;
 
-
-          const rotateX =
-            (
-              0.5 -
-              mouseY
-            ) * 5;
-
-
-          heroCard.style.transform =
-            `
-              perspective(1100px)
-              rotateX(${rotateX}deg)
-              rotateY(${rotateY}deg)
-            `;
+          return;
 
         }
-      );
 
 
-      hero.addEventListener(
-        "mouseleave",
-        () => {
+        /*
+          Normalen Link ausdrücklich
+          nicht blockieren.
+        */
 
-          heroCard.style.transform =
-            "";
+        const link =
+          event.target.closest("a.work");
+
+
+        if (link) {
+
+          /*
+            Hier machen wir absichtlich nichts.
+
+            Der Browser öffnet ganz normal
+            href + target="_blank".
+          */
+
+          return;
 
         }
-      );
 
-    }
+      },
+      true
+    );
+
+
+
+    /* =================================================
+       BROWSER-BILD/ LINK DRAG VERHINDERN
+    ================================================= */
+
+    workGrid.addEventListener(
+      "dragstart",
+      event => {
+
+        event.preventDefault();
+
+      }
+    );
+
+
+
+    /* =================================================
+       FENSTERGRÖSSE
+    ================================================= */
+
+    let resizeTimer;
+
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        clearTimeout(
+          resizeTimer
+        );
+
+
+        resizeTimer =
+          setTimeout(
+            calculateLoopWidth,
+            150
+          );
+
+      }
+    );
 
   }
-);
+
+
+
+  /* =====================================================
+     HERO-KARTE MAUSBEWEGUNG
+  ===================================================== */
+
+  const hero =
+    document.querySelector(".hero");
+
+
+  const heroCard =
+    document.querySelector(
+      ".hero__card"
+    );
+
+
+  if (
+    hero &&
+    heroCard
+  ) {
+
+    hero.addEventListener(
+      "mousemove",
+      event => {
+
+        const rect =
+          hero.getBoundingClientRect();
+
+
+        const mouseX =
+          (
+            event.clientX -
+            rect.left
+          ) /
+          rect.width;
+
+
+        const mouseY =
+          (
+            event.clientY -
+            rect.top
+          ) /
+          rect.height;
+
+
+        const rotateY =
+          (
+            mouseX -
+            0.5
+          ) * 6;
+
+
+        const rotateX =
+          (
+            0.5 -
+            mouseY
+          ) * 5;
+
+
+        heroCard.style.transform =
+          `
+            perspective(1100px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+          `;
+
+      }
+    );
+
+
+    hero.addEventListener(
+      "mouseleave",
+      () => {
+
+        heroCard.style.transform =
+          "";
+
+      }
+    );
+
+  }
+
+});

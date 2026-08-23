@@ -1,5 +1,6 @@
 /* =========================================================
    INTERTWIST CINEMATIC SPLASH
+   KURZE VERSION
 ========================================================= */
 
 
@@ -45,15 +46,7 @@ document.addEventListener(
       <div class="intertwist-splash__brand">
 
 
-        <!--
-          ORIGINAL INFINITY SYMBOL
-
-          Es wird das komplette originale
-          Logo geladen.
-
-          CSS zeigt davon aber NUR
-          den linken Infinity-Bereich.
-        -->
+        <!-- ORIGINAL INFINITY SYMBOL -->
 
         <div class="intertwist-splash__symbol">
 
@@ -66,14 +59,12 @@ document.addEventListener(
 
 
 
-        <!--
-          NEUER TEXT
-        -->
+        <!-- INTERTWIST TEXT -->
 
         <div class="intertwist-splash__name">
 
 
-          <!-- INTER bleibt ruhig -->
+          <!-- INTER BLEIBT RUHIG -->
 
           <span
             class="intertwist-splash__inter"
@@ -82,9 +73,7 @@ document.addEventListener(
           </span>
 
 
-          <!--
-            NUR TWIST wird animiert
-          -->
+          <!-- NUR TWIST WIRD ANIMIERT -->
 
           <span
             id="intertwistCasinoWord"
@@ -142,18 +131,9 @@ document.addEventListener(
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 
-    /*
-      Zielwort.
-    */
-
     const finalWord =
       "twist";
 
-
-    /*
-      Farben gelten NUR
-      für den animierten twist-Teil.
-    */
 
     const casinoColors = [
 
@@ -173,7 +153,7 @@ document.addEventListener(
 
 
     /* =====================================================
-       ZEIT
+       ZEITEN
     ===================================================== */
 
     const startTime =
@@ -181,21 +161,15 @@ document.addEventListener(
 
 
     /*
-      Random-Buchstaben laufen
-      6,2 Sekunden.
+      Casino nur noch 1,8 Sekunden.
     */
 
     const casinoDuration =
-      6200;
+      1800;
 
 
     /*
-      Alle 48 Millisekunden
-      neues Wort.
-
-      Sehr schnell:
-      Man kann die Random-Wörter
-      praktisch nicht lesen.
+      Schnelle Buchstabenwechsel.
     */
 
     const changeEvery =
@@ -231,7 +205,7 @@ document.addEventListener(
 
 
     /* =====================================================
-       RANDOM 5-BUCHSTABEN-WORT
+       RANDOM WORT
     ===================================================== */
 
     function randomWord() {
@@ -270,10 +244,6 @@ document.addEventListener(
         startTime;
 
 
-      /*
-        Nur alle 48ms ändern.
-      */
-
       if (
         time -
         lastChange >=
@@ -284,14 +254,16 @@ document.addEventListener(
           time;
 
 
-        /* neues Random Wort */
+        /* =================================================
+           RANDOM TEXT
+        ================================================= */
 
         twist.textContent =
           randomWord();
 
 
         /* =================================================
-           KLEINE 3D DREHUNG
+           KLEINE 3D ROTATION
         ================================================= */
 
         const rotateX =
@@ -328,6 +300,7 @@ document.addEventListener(
 
         twist.style.transform =
           `
+
             perspective(900px)
 
             rotateX(
@@ -345,6 +318,7 @@ document.addEventListener(
             scale(
               ${scale}
             )
+
           `;
 
 
@@ -409,18 +383,10 @@ document.addEventListener(
 
 
       /* =================================================
-         FINALE
+         FINALES TWIST
       ================================================= */
 
       else {
-
-        /*
-          Random hört SOFORT auf.
-
-          Jetzt erscheint sauber:
-
-          twist
-        */
 
         twist.textContent =
           finalWord;
@@ -455,34 +421,32 @@ document.addEventListener(
 
 
     /* =====================================================
-       ZEITPLAN
+       KURZER ZEITPLAN
+
+       0 - 1,8 Sek.
+       Casino
+
+       1,8 - 2,4 Sek.
+       fertiges Intertwist
+
+       ab 2,4 Sek.
+       Ausblenden
+
+       bei 3,6 Sek.
+       Website komplett frei
     ===================================================== */
-
-    /*
-      0 – 6.2 Sek:
-      Casino + Wachstum
-
-      6.2 – 9 Sek:
-      fertiges Logo ruhig sichtbar
-
-      9 Sek:
-      Splash blendet aus
-
-      10.4 Sek:
-      Splash wird entfernt
-    */
 
 
     const leaveTime =
-      9000;
+      2400;
 
 
     const removeTime =
-      10400;
+      3600;
 
 
     /* =====================================================
-       AUSBLENDEN
+       SPLASH AUSBLENDEN
     ===================================================== */
 
     setTimeout(
