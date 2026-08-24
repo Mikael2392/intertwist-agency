@@ -169,67 +169,47 @@
 
 
   <!-- =====================================================
-       HERO TITEL
+       HERO TITLE
   ====================================================== -->
 
   <style>
 
     .hero__title {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      display: block;
+
+      max-width: 1050px;
+
+      margin-top: 28px;
+      margin-bottom: 30px;
+
+      line-height: 0.94;
     }
 
 
-    .hero__title-top {
+    .hero__title-line1 {
       display: block;
+
+      color: #ffffff !important;
 
       background: none !important;
 
       -webkit-background-clip: initial !important;
       background-clip: initial !important;
-
-      color: #ffffff !important;
     }
 
 
-    .hero__title-bottom {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      margin-top: 24px;
-
-      background: none !important;
-
-      -webkit-background-clip: initial !important;
-      background-clip: initial !important;
-
-      color: #ffffff !important;
-    }
-
-
-    .hero__title-for {
+    .hero__title-line2 {
       display: block;
 
-      background: none !important;
-
-      -webkit-background-clip: initial !important;
-      background-clip: initial !important;
-
-      color: #ffffff !important;
-    }
-
-
-    .hero__title-highlight {
-      display: block;
+      margin-top: 10px;
 
       background:
         linear-gradient(
           90deg,
-          var(--acid),
-          var(--peach),
-          var(--pink)
+          var(--acid) 0%,
+          #ffe950 25%,
+          var(--peach) 55%,
+          var(--pink) 100%
         ) !important;
 
       -webkit-background-clip: text !important;
@@ -239,10 +219,41 @@
     }
 
 
+    @media (max-width: 900px) {
+
+      .hero__title {
+        font-size:
+          clamp(
+            58px,
+            10vw,
+            82px
+          );
+
+        max-width: 100%;
+      }
+
+    }
+
+
     @media (max-width: 620px) {
 
-      .hero__title-bottom {
-        margin-top: 16px;
+      .hero__title {
+        font-size:
+          clamp(
+            44px,
+            12vw,
+            62px
+          );
+
+        line-height: 0.96;
+
+        margin-top: 24px;
+        margin-bottom: 26px;
+      }
+
+
+      .hero__title-line2 {
+        margin-top: 9px;
       }
 
     }
@@ -467,21 +478,12 @@
 
           <h1 class="hero__title">
 
-            <span class="hero__title-top">
-              Webagentur
+            <span class="hero__title-line1">
+              Webagentur für
             </span>
 
-
-            <span class="hero__title-bottom">
-
-              <span class="hero__title-for">
-                für
-              </span>
-
-              <span class="hero__title-highlight">
-                Websites, Apps & SEO
-              </span>
-
+            <span class="hero__title-line2">
+              Websites, Apps & SEO
             </span>
 
           </h1>
@@ -490,7 +492,7 @@
           <p
             class="eyebrow"
             style="
-              margin-top: 28px;
+              margin-top: 24px;
               margin-bottom: 14px;
             "
           >
@@ -695,8 +697,6 @@
         <div class="split-services">
 
 
-          <!-- DEVELOPMENT -->
-
           <article
             class="discipline discipline--dev"
           >
@@ -765,8 +765,6 @@
 
           </article>
 
-
-          <!-- BRAND -->
 
           <article
             class="discipline discipline--creative"
@@ -891,8 +889,6 @@
         <div class="work-grid">
 
 
-          <!-- SOLE MIO -->
-
           <a
             class="work work--lime"
             href="https://solemio-apartments.com/"
@@ -921,8 +917,6 @@
           </a>
 
 
-          <!-- MEETKOCH -->
-
           <a
             class="work work--pink"
             href="https://github.com/Mikael2392/meetkoch"
@@ -950,8 +944,6 @@
           </a>
 
 
-          <!-- WORTSCHMIEDE -->
-
           <a
             class="work"
             href="https://paula-smiri.lovable.app/"
@@ -977,7 +969,6 @@
             </b>
 
           </a>
-
 
         </div>
 
@@ -1218,18 +1209,12 @@
         </div>
 
 
-        <!-- =================================================
-             FORMULAR
-        ================================================== -->
-
         <form
           id="inquiryForm"
           class="form"
           novalidate
         >
 
-
-          <!-- HONEYPOT -->
 
           <div
             class="hp"
