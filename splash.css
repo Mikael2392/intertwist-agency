@@ -1,8 +1,7 @@
 /* =========================================================
    INTERTWIST SPLASH SCREEN
-   KURZE VERSION
+   VOLLER SCHWARZER HINTERGRUND
 ========================================================= */
-
 
 /* =========================================================
    SEITE WÄHREND SPLASH SPERREN
@@ -20,7 +19,6 @@ html.intertwist-splash-lock body {
 
 .intertwist-splash {
   position: fixed;
-
   inset: 0;
 
   width: 100vw;
@@ -29,49 +27,22 @@ html.intertwist-splash-lock body {
   z-index: 999999;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   overflow: hidden;
 
-  background: #000000;
-
+  background: #000000 !important;
   opacity: 1;
 }
 
 
 /* =========================================================
-   LEICHTER GLOW
+   KEIN ZUSÄTZLICHER GLOW IM HINTERGRUND
 ========================================================= */
 
 .intertwist-splash::before {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  width: 65vw;
-  height: 65vw;
-
-  transform:
-    translate(-50%, -50%);
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(234, 255, 0, 0.035),
-      transparent 68%
-    );
-
-  filter:
-    blur(50px);
-
-  pointer-events: none;
+  display: none;
 }
 
 
@@ -83,38 +54,20 @@ html.intertwist-splash-lock body {
   position: relative;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  gap:
-    clamp(
-      5px,
-      0.8vw,
-      14px
-    );
-
+  gap: clamp(5px, 0.8vw, 14px);
   max-width: 94vw;
 
-  background: transparent;
-
+  background: #000000 !important;
   padding: 0;
-
   border: 0;
-
   border-radius: 0;
-
   box-shadow: none;
 
   opacity: 0;
-
-  transform-origin:
-    center center;
-
-  /*
-     KÜRZER ALS VORHER:
-     2,6 Sekunden statt 8,8 Sekunden
-  */
+  transform-origin: center center;
 
   animation:
     intertwistSplashGrow
@@ -122,10 +75,7 @@ html.intertwist-splash-lock body {
     cubic-bezier(.16,.78,.22,1)
     forwards;
 
-  will-change:
-    transform,
-    opacity,
-    filter;
+  will-change: transform, opacity, filter;
 }
 
 
@@ -135,32 +85,16 @@ html.intertwist-splash-lock body {
 
 .intertwist-splash__symbol {
   position: relative;
+  flex: 0 0 auto;
 
-  flex:
-    0 0 auto;
-
-  width:
-    clamp(
-      105px,
-      14.25vw,
-      228px
-    );
-
-  height:
-    clamp(
-      110px,
-      15vw,
-      240px
-    );
+  width: clamp(105px, 14.25vw, 228px);
+  height: clamp(110px, 15vw, 240px);
 
   overflow: hidden;
 
-  background: #000000;
-
+  background: #000000 !important;
   border: 0;
-
   border-radius: 0;
-
   box-shadow: none;
 }
 
@@ -171,23 +105,18 @@ html.intertwist-splash-lock body {
 
 .intertwist-splash__symbol img {
   position: absolute;
-
   left: 0;
   top: 50%;
 
   height: 100%;
-
   width: auto;
-
   max-width: none;
 
   display: block;
 
-  transform:
-    translateY(-50%);
+  transform: translateY(-50%);
 
   user-select: none;
-
   pointer-events: none;
 }
 
@@ -198,40 +127,19 @@ html.intertwist-splash-lock body {
 
 .intertwist-splash__name {
   display: flex;
-
   align-items: baseline;
 
   white-space: nowrap;
 
-  background: transparent;
-
+  background: #000000 !important;
   padding: 0;
-
   border: 0;
 
-  font-family:
-    "Manrope",
-    "Inter",
-    sans-serif;
-
-  font-size:
-    clamp(
-      46px,
-      9vw,
-      150px
-    );
-
+  font-family: "Manrope", "Inter", sans-serif;
+  font-size: clamp(46px, 9vw, 150px);
   font-weight: 800;
-
   line-height: 0.92;
-
-  /*
-     Etwas mehr Abstand als vorher,
-     damit R und T nicht zusammenkleben.
-  */
-
-  letter-spacing:
-    -0.04em;
+  letter-spacing: -0.04em;
 }
 
 
@@ -243,21 +151,16 @@ html.intertwist-splash-lock body {
   display: inline-block;
 
   color: #ffffff;
-
-  background: transparent;
+  background: transparent !important;
 
   padding: 0;
-
   border: 0;
-
   border-radius: 0;
 
-  margin-right:
-    0.035em;
+  margin-right: 0.035em;
 
   text-shadow:
-    0 0 14px
-    rgba(255, 255, 255, 0.05);
+    0 0 14px rgba(255, 255, 255, 0.05);
 }
 
 
@@ -268,35 +171,22 @@ html.intertwist-splash-lock body {
 .intertwist-splash__twist {
   display: inline-block;
 
-  width:
-    3.15em;
+  width: 3.15em;
 
-  color:
-    #eaff00;
-
-  background:
-    transparent;
+  color: #eaff00;
+  background: transparent !important;
 
   padding: 0;
-
-  margin-left:
-    0.01em;
+  margin-left: 0.01em;
 
   text-align: left;
 
-  transform-origin:
-    center center;
+  transform-origin: center center;
 
   filter:
-    drop-shadow(
-      0 0 11px
-      rgba(234, 255, 0, 0.38)
-    );
+    drop-shadow(0 0 11px rgba(234, 255, 0, 0.38));
 
-  will-change:
-    transform,
-    color,
-    filter;
+  will-change: transform, color, filter;
 }
 
 
@@ -305,11 +195,8 @@ html.intertwist-splash-lock body {
 ========================================================= */
 
 .intertwist-splash__twist.is-finished {
-  color:
-    #eaff00 !important;
-
-  background:
-    transparent !important;
+  color: #eaff00 !important;
+  background: transparent !important;
 
   transform:
     perspective(900px)
@@ -319,27 +206,13 @@ html.intertwist-splash-lock body {
     scale(1) !important;
 
   filter:
-    drop-shadow(
-      0 0 12px
-      rgba(234, 255, 0, 0.32)
-    )
-    drop-shadow(
-      0 0 28px
-      rgba(234, 255, 0, 0.12)
-    ) !important;
+    drop-shadow(0 0 12px rgba(234, 255, 0, 0.32))
+    drop-shadow(0 0 28px rgba(234, 255, 0, 0.12)) !important;
 
   transition:
-    transform
-    0.45s
-    cubic-bezier(.2,.8,.2,1),
-
-    color
-    0.45s
-    ease,
-
-    filter
-    0.45s
-    ease;
+    transform 0.45s cubic-bezier(.2,.8,.2,1),
+    color 0.45s ease,
+    filter 0.45s ease;
 }
 
 
@@ -350,106 +223,51 @@ html.intertwist-splash-lock body {
 @keyframes intertwistSplashGrow {
 
   0% {
-
     opacity: 0;
-
-    transform:
-      scale(0.15)
-      translateY(20px);
-
-    filter:
-      blur(10px);
-
+    transform: scale(0.15) translateY(20px);
+    filter: blur(10px);
   }
-
 
   10% {
-
     opacity: 1;
-
-    transform:
-      scale(0.24)
-      translateY(12px);
-
-    filter:
-      blur(5px);
-
+    transform: scale(0.24) translateY(12px);
+    filter: blur(5px);
   }
-
 
   22% {
-
-    transform:
-      scale(0.34)
-      translateY(6px);
-
-    filter:
-      blur(1px);
-
+    transform: scale(0.34) translateY(6px);
+    filter: blur(1px);
   }
-
 
   34% {
-
-    transform:
-      scale(0.46);
-
-    filter:
-      blur(0);
-
+    transform: scale(0.46);
+    filter: blur(0);
   }
-
 
   48% {
-
-    transform:
-      scale(0.59);
-
+    transform: scale(0.59);
   }
-
 
   62% {
-
-    transform:
-      scale(0.72);
-
+    transform: scale(0.72);
   }
-
 
   74% {
-
-    transform:
-      scale(0.82);
-
+    transform: scale(0.82);
   }
-
 
   84% {
-
-    transform:
-      scale(0.90);
-
+    transform: scale(0.90);
   }
-
 
   92% {
-
-    transform:
-      scale(0.96);
-
+    transform: scale(0.96);
   }
 
-
   100% {
-
     opacity: 1;
-
-    transform:
-      scale(1);
-
-    filter:
-      blur(0);
-
+    transform: scale(1);
+    filter: blur(0);
   }
 
 }
@@ -467,30 +285,18 @@ html.intertwist-splash-lock body {
     forwards;
 }
 
-
 @keyframes intertwistSplashLeave {
 
   0% {
-
     opacity: 1;
-
-    filter:
-      blur(0);
-
+    filter: blur(0);
   }
 
-
   100% {
-
     opacity: 0;
-
-    filter:
-      blur(3px);
-
+    filter: blur(3px);
     visibility: hidden;
-
     pointer-events: none;
-
   }
 
 }
@@ -503,43 +309,22 @@ html.intertwist-splash-lock body {
 @media (max-width: 900px) {
 
   .intertwist-splash__brand {
-
     gap: 6px;
-
     max-width: 96vw;
-
   }
-
 
   .intertwist-splash__symbol {
-
     width: 126px;
-
     height: 132px;
-
   }
-
 
   .intertwist-splash__name {
-
-    font-size:
-      clamp(
-        42px,
-        9.5vw,
-        80px
-      );
-
-    letter-spacing:
-      -0.035em;
-
+    font-size: clamp(42px, 9.5vw, 80px);
+    letter-spacing: -0.035em;
   }
 
-
   .intertwist-splash__inter {
-
-    margin-right:
-      0.04em;
-
+    margin-right: 0.04em;
   }
 
 }
@@ -552,52 +337,26 @@ html.intertwist-splash-lock body {
 @media (max-width: 700px) {
 
   .intertwist-splash__brand {
-
     gap: 4px;
-
   }
-
 
   .intertwist-splash__symbol {
-
     width: 82px;
-
     height: 86px;
-
   }
-
 
   .intertwist-splash__name {
-
-    font-size:
-      clamp(
-        34px,
-        10vw,
-        64px
-      );
-
-    letter-spacing:
-      -0.03em;
-
+    font-size: clamp(34px, 10vw, 64px);
+    letter-spacing: -0.03em;
   }
-
 
   .intertwist-splash__inter {
-
-    margin-right:
-      0.045em;
-
+    margin-right: 0.045em;
   }
 
-
   .intertwist-splash__twist {
-
-    width:
-      3.15em;
-
-    margin-left:
-      0.01em;
-
+    width: 3.15em;
+    margin-left: 0.01em;
   }
 
 }
@@ -610,41 +369,21 @@ html.intertwist-splash-lock body {
 @media (max-width: 430px) {
 
   .intertwist-splash__brand {
-
     gap: 3px;
-
   }
-
 
   .intertwist-splash__symbol {
-
     width: 64px;
-
     height: 67px;
-
   }
-
 
   .intertwist-splash__name {
-
-    font-size:
-      clamp(
-        28px,
-        9.4vw,
-        43px
-      );
-
-    letter-spacing:
-      -0.025em;
-
+    font-size: clamp(28px, 9.4vw, 43px);
+    letter-spacing: -0.025em;
   }
 
-
   .intertwist-splash__inter {
-
-    margin-right:
-      0.05em;
-
+    margin-right: 0.05em;
   }
 
 }
@@ -657,18 +396,11 @@ html.intertwist-splash-lock body {
 @media (prefers-reduced-motion: reduce) {
 
   .intertwist-splash__brand {
-
-    animation-duration:
-      0.8s;
-
+    animation-duration: 0.8s;
   }
 
-
   .intertwist-splash.is-leaving {
-
-    animation-duration:
-      0.4s;
-
+    animation-duration: 0.4s;
   }
 
 }
